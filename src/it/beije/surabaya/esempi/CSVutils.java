@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -51,24 +52,34 @@ public class CSVutils {
 		List<String> oldRows = new ArrayList<String>();
 		if (file.exists()) {
 			oldRows = getFileAsStrings(pathFile);
-//			BufferedReader reader = new BufferedReader(new FileReader(file));
-//			while(reader.ready()) {
-//				oldRows.add(reader.readLine());
-//			}
-//			reader.close();
 		}
 		System.out.println(oldRows);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile));
-		for (String r : oldRows) {
-			writer.write(r);
-			writer.newLine();
+		
+		oldRows.addAll(Arrays.asList(newRows));
+		writeRowsInFile(pathFile, oldRows.toArray(new String[0]));
+		
+		String[] totalRows = new String[oldRows.size() + newRows.length];
+		int i;
+		for (i = 0; i < oldRows.size(); i++) {
+			String r = oldRows.get(i);
+			totalRows[i] = r;
 		}
 		for (String r : newRows) {
-			writer.write(r);
-			writer.newLine();
+			totalRows[i] = r;
+			i++;
 		}
-
-		writer.close();
+		
+//		BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile));
+//		for (String r : oldRows) {
+//			writer.write(r);
+//			writer.newLine();
+//		}
+//		for (String r : newRows) {
+//			writer.write(r);
+//			writer.newLine();
+//		}
+//
+//		writer.close();
 	}
 	
 }
