@@ -58,6 +58,10 @@ public class CSVutils {
 		oldRows.addAll(Arrays.asList(newRows));
 		writeRowsInFile(pathFile, oldRows.toArray(new String[0]));
 		
+		
+		
+		
+		
 //		String[] totalRows = new String[oldRows.size() + newRows.length];
 //		int i;
 //		for (i = 0; i < oldRows.size(); i++) {

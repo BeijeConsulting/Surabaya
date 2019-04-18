@@ -14,8 +14,8 @@ public class GeneratoreCSVrubrica {
 	
 	static {
 		try {
-			nomi = CSVutils.getFileAsStrings("C:\\temp\\nomi.txt");
-			cognomi = CSVutils.getFileAsStrings("C:\\temp\\cognomi.txt");
+			nomi = CSVutils.getFileAsStrings("C:\\ProgramData\\ASUS\\ASUS Live Update\\Temp\\nomi.txt");
+			cognomi = CSVutils.getFileAsStrings("C:\\ProgramData\\ASUS\\ASUS Live Update\\Temp\\cognomi.txt");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -101,7 +101,7 @@ public class GeneratoreCSVrubrica {
 			records[i] = getCSVrecord(separatore);
 		}
 		
-		CSVutils.writeRowsInFile("C:\\temp\\rubrica_random.txt", records);
+		CSVutils.writeRowsInFile("C:\\ProgramData\\ASUS\\ASUS Live Update\\Temp\\rubrica_random.txt", records);
 		
 		System.out.println("FATTO");
 	}
