@@ -32,7 +32,6 @@ public class SommaNumeriNumero {
 		}
 		
 		System.out.println("somma : " + somma);
-		
 	
 	}
 }
