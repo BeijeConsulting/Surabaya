@@ -1,74 +1,85 @@
-package it.beije.surabaya.esempi;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+	package it.beije.surabaya.esempi;
+
+	import java.io.BufferedReader;
+	import java.io.BufferedWriter;
+	import java.io.File;
+	import java.io.FileReader;
+	import java.io.FileWriter;
+	import java.io.IOException;
+	import java.util.ArrayList;
+	import java.util.Arrays;
+	import java.util.List;
 
 
-public class CSVutils {
-	
-	public static List<String> getFileAsStrings(String pathFile) throws Exception {
-		List<String> content = new ArrayList<String>();
+	public class CSVutils {
 		
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new FileReader(pathFile));
+		public static List<String> getFileAsStrings(String pathFile) throws Exception {
+			List<String> content = new ArrayList<String>();
 			
-			while(reader.ready()) {
-				content.add(reader.readLine());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
+			BufferedReader reader = null;
 			try {
-				reader.close();
-			} catch (IOException ioException) {
-				ioException.printStackTrace();
+				reader = new BufferedReader(new FileReader(pathFile));
+				
+				while(reader.ready()) {
+					content.add(reader.readLine());
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw e;
+			} finally {
+				try {
+					reader.close();
+				} catch (IOException ioException) {
+					ioException.printStackTrace();
+				}
 			}
+			
+			return content;
 		}
 		
-		return content;
-	}
-	
-	public static void writeRowsInFile(String pathFile, String... newRows) throws Exception {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile));
-		for (String r : newRows) {
-			writer.write(r);
-			writer.newLine();
+		public static void writeRowsInFile(String pathFile, String... newRows) throws Exception {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile));
+			for (String r : newRows) {
+				writer.write(r);
+				writer.newLine();
+			}
+
+			writer.close();
 		}
 
-		writer.close();
-	}
-
-	public static void appendRowsInFile(String pathFile, String... newRows) throws Exception {
-		File file = new File(pathFile);
-		List<String> oldRows = new ArrayList<String>();
-		if (file.exists()) {
-			oldRows = getFileAsStrings(pathFile);
-//			BufferedReader reader = new BufferedReader(new FileReader(file));
-//			while(reader.ready()) {
-//				oldRows.add(reader.readLine());
+		public static void appendRowsInFile(String pathFile, String... newRows) throws Exception {
+			File file = new File(pathFile);
+			List<String> oldRows = new ArrayList<String>();
+			if (file.exists()) {
+				oldRows = getFileAsStrings(pathFile);
+//				BufferedReader reader = new BufferedReader(new FileReader(file));
+//				while(reader.ready()) {
+//					oldRows.add(reader.readLine());
+//				}
+//				reader.close();
+			}
+			
+			
+			System.out.println(oldRows);
+			
+			oldRows.addAll(Arrays.asList(newRows));
+			
+			writeRowsInFile(pathFile, oldRows.toArray(new String[0]));
+			
+//			BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile));
+//			for (String r : oldRows) {
+//				writer.write(r);
+////				writer.newLine();
 //			}
-//			reader.close();
-		}
-		System.out.println(oldRows);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile));
-		for (String r : oldRows) {
-			writer.write(r);
-			writer.newLine();
-		}
-		for (String r : newRows) {
-			writer.write(r);
-			writer.newLine();
-		}
+//			for (String r : newRows) {
+//				writer.write(r);
+////				writer.newLine();
+//			}
 
-		writer.close();
+//			writer.close();
+		}
+		
 	}
-	
-}
+
+
