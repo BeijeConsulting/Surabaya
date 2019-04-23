@@ -51,12 +51,12 @@ public class InterfacciaUtente {
 				query = TSutils.creaUtente();
 				break;
 			case "m":
-				System.out.println("id da modificare:");				
+				System.out.println("ID da modificare:");				
 				idUtente = scan.nextLine();
 				query = TSutils.modificaUtente(idUtente);
 				break;
 			case "e":
-				System.out.println("id da eliminare:");				
+				System.out.println("ID da eliminare:");				
 				idUtente = scan.nextLine();
 				query = TSutils.eliminaUtente(idUtente);
 				break;
