@@ -10,7 +10,7 @@ public class DButils {
 	
 	private static final String DB_USER = "root";
 	private static final String DB_PASSWORD = "Beije03";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/gestionale?serverTimezone=CET";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/beije?serverTimezone=CET";
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Connection conn = null;
@@ -37,16 +37,16 @@ public class DButils {
 //			stmt.execute(insert);
 
 			//SELECT
-			String query = "SELECT * from utenti";
+			String query = "SELECT * from user";
 			rset = stmt.executeQuery(query);
 
 			while (rset.next()) {
 				int id = rset.getInt("id");
-				String nome = rset.getString("nome");
-				String cognome = rset.getString("cognome");
-				String email = rset.getString(4);
+				String nome = rset.getString("first_name");
+				String cognome = rset.getString("last_name");
+				//String id = rset.getString("id");
 
-				System.out.println("" + id + ", " + nome + ", " + cognome + ", " +  email);
+				System.out.println("" + id + ", " + nome + ", " + cognome + ", " );
 			}
 
 		}
