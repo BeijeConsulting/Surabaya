@@ -161,8 +161,7 @@ public class DBExport {
 		}       
 	} //End exportCsv
 	
-	
-	//CREATE XML FILE 
+	//CREATE XML MEHOD 
 	public void exportXML(String pathfile) throws Exception {
 		
 		 DocumentBuilderFactory dFact = DocumentBuilderFactory.newInstance();
