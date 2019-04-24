@@ -106,7 +106,11 @@ public class TSutils {
 			}
 			break;
 		case "fiscal_code":
-			cf = prendiCampo(campo);
+			do {							
+				System.out.println("Codice Fiscale utente (16 cifre, CAMPO OBBLIGATORIO)");
+				cf = prendiCampo(campo);
+			}
+			while (cf.trim().length()!= 16);
 			creaQuery.append(campo +"="+ "'"+cf +"'" +",");
 			break;
 		case "password":
@@ -122,10 +126,10 @@ public class TSutils {
 			System.out.println("Input non valido");
 			return null;
 		}
-		System.out.println(creaQuery+"prima di charat");
-		creaQuery.deleteCharAt(creaQuery.length()-1);    	
-		System.out.println(creaQuery);
-		creaQuery.append(" where id = "+ idUtente);
+		
+		creaQuery.deleteCharAt(creaQuery.length()-1);    	//in questo modo toglie l'ultimo carattere che è la virgola
+		
+		creaQuery.append(" where id = "+ idUtente);			// finisce di creare la query specificando l'id
 
 		scan.close();
 
@@ -133,7 +137,7 @@ public class TSutils {
 
 	}
 
-	public static String prendiCampo(String c) {
+	public static String prendiCampo(String c) {			//metodo per inserire il valore del campo modificato
 		String nuovoValore;
 
 		System.out.println("Inserisci il nuovo " + c);
@@ -142,9 +146,9 @@ public class TSutils {
 		return nuovoValore;
 	}
 
-	public static String eliminaUtente(String idUtente) {
+	public static String eliminaUtente(String idUtente) {  //eliminazione dell'utente
 		String query=null;
-		query="DELETE FROM user WHERE id = " + idUtente;
+		query="DELETE FROM user WHERE id = " + idUtente;    //creazione della query per eliminare
 		return query;
 	}
 
