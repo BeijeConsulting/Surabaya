@@ -17,10 +17,10 @@ public class TSutils {
 		}
 		
 		String cognome = null;
-		System.out.println("Cogome utente");
+		System.out.println("Cognome utente");
 		cognome = "'"+scan.nextLine().trim()+"'";
 		while(cognome.length()==2) {
-			System.out.println("Cogome utente (CAMPO OBBLIGATORIO)");
+			System.out.println("Cognome utente (CAMPO OBBLIGATORIO)");
 			cognome = "'"+scan.nextLine().trim()+"'";
 		}
 		
@@ -95,6 +95,7 @@ public class TSutils {
 			break;
 		default:
 			System.out.println("Input non valido");		
+			return null;
 		}
 		
 		creaQuery.deleteCharAt(creaQuery.length()-1);
