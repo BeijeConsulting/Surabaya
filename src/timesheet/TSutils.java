@@ -10,19 +10,18 @@ public class TSutils {
 		
 		String nome = null;
 		System.out.println("Nome utente");
-		nome = "'"+scan.nextLine()+"'";
+		nome = "'"+scan.nextLine().trim()+"'";
 		while(nome.length()==2) {
 			System.out.println("Nome utente (CAMPO OBBLIGATORIO)");
-			nome = "'"+scan.nextLine()+"'";
+			nome = "'"+scan.nextLine().trim()+"'";
 		}
-		
 		
 		String cognome = null;
 		System.out.println("Cogome utente");
-		cognome = "'"+scan.nextLine()+"'";
+		cognome = "'"+scan.nextLine().trim()+"'";
 		while(cognome.length()==2) {
 			System.out.println("Cogome utente (CAMPO OBBLIGATORIO)");
-			cognome = "'"+scan.nextLine()+"'";
+			cognome = "'"+scan.nextLine().trim()+"'";
 		}
 		
 		System.out.println("Email utente (INVIO per saltare CAMPO)");
@@ -52,8 +51,6 @@ public class TSutils {
 		
 		String query = "INSERT INTO user "
 				+ "VALUES (null, "+nome+", "+cognome+", "+email+", "+workEmail+", "+phone+", "+cf+", "+admin+", "+pw+");";
-		
-		
 		
 		return query;
 	}
