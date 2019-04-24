@@ -53,6 +53,7 @@ public class TSutils {
 			break;
 		default:
 			System.out.println("Input non valido");		
+			return null;
 		}
 		
 		creaQuery.deleteCharAt(creaQuery.length()-1);
