@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 //import chapter4.CSVutils;
 
@@ -49,15 +49,43 @@ public class InterfacciaUtente {
 			switch (scelta) {
 			case "c":
 				query = TSutils.creaUtente();
+				String[] campi = query.split(" ");
+				String cf = campi[10].substring(1, campi[10].length()-2);
+				rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code="+cf);
+				if(rset.first()) {
+					System.out.println("Questo codice fiscale esiste già");
+					query = null;
+				}
 				break;
 			case "m":
 				System.out.println("ID da modificare:");				
 				idUtente = scan.nextLine();
 				query = TSutils.modificaUtente(idUtente);
+				//System.out.println(query);
+				if(query.indexOf("fiscal_code=")!=-1) {
+					cf = query.substring(29, 45);
+					rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code="+cf);
+					if(rset.first()) {
+						System.out.println("Questo codice fiscale esiste già");
+						query = null;
+					}
+				}
+				//System.out.println(query.substring(29, 45));
 				break;
 			case "e":
-				System.out.println("ID da eliminare:");				
+				System.out.println("ID da eliminare:");
 				idUtente = scan.nextLine();
+				rset = stmt.executeQuery("SELECT * FROM timetable WHERE id_user="+idUtente);
+				if(rset.first()) {
+					System.out.println("Questo utente ha delle tabelle orario associate, "
+							+ "sicuro di volerle cancellare? YES per confermare");
+					String sicurezza = scan.nextLine();
+					if(sicurezza.equalsIgnoreCase("yes")){
+						stmt.execute("DELETE FROM timetable WHERE id_user="+idUtente);
+					}else {
+						break;
+					}
+				}
 				query = TSutils.eliminaUtente(idUtente);
 				break;
 			default: 
@@ -67,32 +95,32 @@ public class InterfacciaUtente {
 			if(query!=null) {
 				stmt.execute(query);
 			}
+			scan.close();
 			
-			
-			String query2 = "SELECT * FROM user";
-			rset = stmt.executeQuery(query2);
-			
-			List<String> utenti = new ArrayList<>();
-			utenti.add("Cognome, Nome, Numero, Email");
-			
-			while (rset.next()) {
-				
-				String nome = rset.getString("first_name");
-				String cognome= rset.getString("last_name");
-				String mail = rset.getString("personal_email");
-				String workMail= rset.getString("work_email");
-				String phone=rset.getString("phone");
-				String cf=rset.getString("fiscal_code");
-				String ad=rset.getString("admin");
-				String pw=rset.getString("password");
-				utenti.add("" + nome+", " + cognome+", "+mail+", "+workMail+", "+phone+", "+cf+", "+ad+", "+pw);
-			
-			}
-			String[] arrayUtenti;
-			arrayUtenti = utenti.toArray(new String[utenti.size()]);
-			for(String utente:utenti) {
-				System.out.println(utente);
-			}
+//			String query2 = "SELECT * FROM user";
+//			rset = stmt.executeQuery(query2);
+//			
+//			List<String> utenti = new ArrayList<>();
+//			utenti.add("Cognome, Nome, Numero, Email");
+//			
+//			while (rset.next()) {
+//				
+//				String nome = rset.getString("first_name");
+//				String cognome= rset.getString("last_name");
+//				String mail = rset.getString("personal_email");
+//				String workMail= rset.getString("work_email");
+//				String phone=rset.getString("phone");
+//				String cf=rset.getString("fiscal_code");
+//				String ad=rset.getString("admin");
+//				String pw=rset.getString("password");
+//				utenti.add("" + nome+", " + cognome+", "+mail+", "+workMail+", "+phone+", "+cf+", "+ad+", "+pw);
+//			
+//			}
+//			String[] arrayUtenti;
+//			arrayUtenti = utenti.toArray(new String[utenti.size()]);
+//			for(String utente:utenti) {
+//				System.out.println(utente);
+//			}
 			//CSVutils.writeRowsInFile("C:\\Users\\Padawan04\\Desktop\\Marco\\nomiCognomi\\rubrica_random.csv", arrayUtenti);
 			
 		}catch (SQLException se) {
