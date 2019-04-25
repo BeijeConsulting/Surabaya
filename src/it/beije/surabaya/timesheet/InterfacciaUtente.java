@@ -47,6 +47,7 @@ public class InterfacciaUtente {
 			
 			String scelta=scan.nextLine().toLowerCase();
 			String idUtente;
+			String path; //Path da inserire quando si sceglie di importare CSV o esportare DB
 			String query = null;
 			String[] query_array = null;
 			
@@ -98,37 +99,31 @@ public class InterfacciaUtente {
 				break;
 			//IMPORTA CSV NEL DB
 			case "i":
-				{
-					System.out.println("Inserisci path file CSV da importare: ");
-					String path = scan.nextLine();
-					query_array = DBImportExport.importCsv(path);
-					for (int i=0; i<query_array.length; i++) {
-						campi = query_array[i].split(" ");
-						cf = campi[10].substring(1, campi[10].length()-2);
-						rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code='"+cf+"'");
-						if(rset.first()) {
-							System.out.println("Questo codice fiscale esiste già");
-							query_array[i] = null;
-						}
+				System.out.println("Inserisci path file CSV da importare: ");
+				path = scan.nextLine();
+				query_array = DBImportExport.importCsv(path);
+				for (int i=0; i<query_array.length; i++) {
+					campi = query_array[i].split(" ");
+					cf = campi[10].substring(1, campi[10].length()-2);						rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code='"+cf+"'");
+					if(rset.first()) {
+						System.out.println("Questo codice fiscale esiste già");
+						query_array[i] = null;
 					}
 				}
 				break;
 			//ESPORTA DB IN CSV
 			case "ex1":
-				{
-					System.out.println("Inserisci path file CSV da esportare: ");
-					String path = scan.nextLine();
-					DBImportExport.exportCsv(path, conn, stmt);
-				}
+				System.out.println("Inserisci path file CSV da esportare: ");
+				path = scan.nextLine();
+				DBImportExport.exportCsv(path, conn, stmt);
 				break;
 			//ESPORTA DB IN XML
 			case "ex2":
-				{
-					System.out.println("Inserisci path file CSV da esportare: ");
-					String path = scan.nextLine();
-					DBImportExport.exportXml(path, conn, stmt);
-				}
+				System.out.println("Inserisci path file CSV da esportare: ");
+				path = scan.nextLine();
+				DBImportExport.exportXml(path, conn, stmt);
 				break;
+			//DEFAULT CASE
 			default: 
 				System.out.println("Scelta sbagliata");
 			}
