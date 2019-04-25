@@ -1,7 +1,8 @@
 package timesheet;
-import java.sql.Date;
 import java.time.LocalDate;
+//import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 public class TSutils {
 	static Scanner scan = new Scanner(System.in);
@@ -67,8 +68,7 @@ public class TSutils {
 
 		StringBuilder creaQuery = new StringBuilder("UPDATE user set ");
 
-		System.out.println("Cosa vuoi modificare? first_name");
-		System.out.println("first_name, last_name, personal_email, work_email, phone, fiscal_code, password");
+		System.out.println("Cosa vuoi modificare?\nfirst_name, last_name, personal_email, work_email, phone, fiscal_code, password");
 		campo = scan.nextLine().toLowerCase();
 		//modifica il campo scelto dall'utente
 		switch(campo) {
@@ -157,12 +157,40 @@ public class TSutils {
 
 	public static String inserisciRigaLavorativa(String idUtente) {
 
+		String query = null;
+		
 		System.out.println("Inserisci la data: yyyy-MM-dd");
 		String dataInput = scan.nextLine();
-		DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate data = LocalDate.parse(dataInput, f);
-		System.out.println(data);
-		return null;
+		try {
+			DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate data = LocalDate.parse(dataInput, f);
+			//System.out.println(data);
+			query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+data+"', 'w', '09:00:00', '13:00:00', '14:00:00', '18:00:00', '8.0')";
+			
+			System.out.println("Vuoi modificare gli orari di entrata/uscita?\nM per Modificarli\nQualsiasi tasto per 9:00:00-13:00:00 14:00:00-18:00:00");
+			String scelta = scan.nextLine();
+			if(scelta.equalsIgnoreCase("m")) {
+				System.out.println("Orario entrata: (hh:mm:ss)");
+				String e1 = scan.nextLine();
+//				String[] e1 = scan.nextLine().split(":");
+//				int ora = Integer.parseInt(e1[0]);
+//				int minuto = Integer.parseInt(e1[1]);
+//				LocalTime te1 = LocalTime.of(ora, minuto, 00);
+				System.out.println("Orario inizio pausa pranzo: (hh:mm:ss)");
+				String u1 = scan.nextLine();
+				System.out.println("Orario fine pausa pranzo: (hh:mm:ss)");
+				String e2 = scan.nextLine();
+				System.out.println("Orario uscita: (hh:mm:ss)");
+				String u2 = scan.nextLine();
+				query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+data+"', 'w', '"+e1+"', '"+u1+"', '"+e2+"', '"+u2+"', '8.0')";
+				System.out.println("Input ore da controllare, totale da calcolare!");
+			}
+		}catch(DateTimeParseException e) {
+			System.out.println("Formato data errato");
+		}
+		
+		System.out.println(query);
+		return query;
 	}
 
 	public static String inserisciRigaPermesso(String idUtente) {

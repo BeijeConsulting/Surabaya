@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-//import java.util.ArrayList;
-//import java.util.List;
 
-//import chapter4.CSVutils;
 
 public class InterfacciaTimetable {
 
@@ -34,21 +31,41 @@ public class InterfacciaTimetable {
 		
 		try {
 			conn = getConnection();
-			
 			stmt = conn.createStatement();
-			
-			//utenti SELECT
-			
+						
 			Scanner scan=new Scanner(System.in);
+			
+			//SELEZIONE SCELTA INIZIALE
+			String scelta = null;
 			System.out.println("Orari utenti: I-Inserisci, M-Modifica");
+			scelta=scan.nextLine().toLowerCase();
+			while(!(scelta.equalsIgnoreCase("i")||scelta.equalsIgnoreCase("m"))) {
+				System.out.println("Scelta sbagliata!");
+				System.out.println("Orari utenti: I-Inserisci, M-Modifica");
+				scelta=scan.nextLine().toLowerCase();
+			}
 			
-			String scelta=scan.nextLine().toLowerCase();
+			//COLNTROLLO ID UTENTE SELEZIONATO
 			String idUtente;
-			String query = null;
-			
-			if(scelta.equalsIgnoreCase("i")) {
+			System.out.println("Inserisci ID utente");
+			idUtente = scan.nextLine();
+			String check = "SELECT * FROM user WHERE id="+idUtente;
+			rset = stmt.executeQuery(check);
+			while(!rset.first()) {
+				System.out.println("Utente inesistente per questo ID");
 				System.out.println("Inserisci ID utente");
 				idUtente = scan.nextLine();
+				check = "SELECT * FROM user WHERE id="+idUtente;
+				rset.close();
+				rset = stmt.executeQuery(check);
+			}
+			rset.close();
+			
+			String query = null;
+			
+			//CREAZIONE RECORD TIMETABLE
+			if(scelta.equalsIgnoreCase("i")) {
+				
 				System.out.println("Inserisci riga orario: L-Lavorativo, P-Permesso, F-Ferie, M-Malattia ");
 				scelta=scan.nextLine().toLowerCase();
 				switch (scelta) {
@@ -67,9 +84,10 @@ public class InterfacciaTimetable {
 				default: 
 					System.out.println("Scelta sbagliata");
 				}
-			}else if(scelta.equalsIgnoreCase("m")) {
-				System.out.println("Inserisci ID utente");
-				idUtente = scan.nextLine();
+				
+			//MODIFICA RECORD TIMETABLE
+			}else{
+				
 				System.out.println("Modifica orario: L-Lavorativo, P-Permesso, F-Ferie, M-Malattia");
 				scelta=scan.nextLine().toLowerCase();
 				switch (scelta) {
@@ -88,15 +106,13 @@ public class InterfacciaTimetable {
 				default: 
 					System.out.println("Scelta sbagliata");
 				}
-			}else {
-				System.out.println("Scelta sbagliata");
 			}
 			
-			
-			
+			//ESECUZIONE QUERY (se non nulla)
 			if(query!=null) {
 				stmt.execute(query);
 			}
+			
 			scan.close();
 
 		}catch (SQLException se) {

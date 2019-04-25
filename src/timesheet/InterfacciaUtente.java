@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-//import java.util.ArrayList;
-//import java.util.List;
 
-//import chapter4.CSVutils;
 
 public class InterfacciaUtente {
 
@@ -34,29 +31,30 @@ public class InterfacciaUtente {
 		
 		try {
 			conn = getConnection();
-			
 			stmt = conn.createStatement();
-			
-			//utenti SELECT
-			
+						
 			Scanner scan=new Scanner(System.in);
-			System.out.println("Cosa vuoi fare? c-Crea, m-Modifica, e-Elimina");
+			System.out.println("Cosa vuoi fare? c-Crea, m-Modifica, e-Elimina, "
+					+ "i-Importa CSV, ex1-Esporta CSV, ex2-Esporta XML");
 			
 			String scelta=scan.nextLine().toLowerCase();
 			String idUtente;
 			String query = null;
+			String[] query_array = null;
 			
 			switch (scelta) {
+			//CREAZIONE NUOVO RECORD USER
 			case "c":
 				query = TSutils.creaUtente();
 				String[] campi = query.split(" ");
-				String cf = campi[10].substring(1, campi[10].length()-2);
+				String cf = campi[10].substring(0, campi[10].length()-1);
 				rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code="+cf);
 				if(rset.first()) {
 					System.out.println("Questo codice fiscale esiste già");
 					query = null;
 				}
 				break;
+			//MODIFICA RECORD USER
 			case "m":
 				System.out.println("ID da modificare:");				
 				idUtente = scan.nextLine();
@@ -73,6 +71,7 @@ public class InterfacciaUtente {
 				}
 				//System.out.println(query.substring(29, 45));
 				break;
+			//ELIMINA RECORD USER
 			case "e":
 				System.out.println("ID da eliminare:");
 				idUtente = scan.nextLine();
@@ -89,13 +88,39 @@ public class InterfacciaUtente {
 				}
 				query = TSutils.eliminaUtente(idUtente);
 				break;
+			//IMPORTA CSV NEL DB
+			case "i":
+				System.out.println("Inserisci path file CSV da importare: ");
+				String path = scan.nextLine();
+				query_array = DBImportExport.importCsv(path);
+				break;
+			//ESPORTA DB IN CSV
+			case "ex1":
+				System.out.println("Inserisci path file CSV da esportare: ");
+				path = scan.nextLine();
+				DBImportExport.exportCsv(path, conn, stmt);
+				break;
+			//ESPORTA DB IN XML
+			case "ex2":
+				System.out.println("Inserisci path file CSV da esportare: ");
+				path = scan.nextLine();
+				DBImportExport.exportXml(path, conn, stmt);
+				break;
 			default: 
 				System.out.println("Scelta sbagliata");
 			}
 			
+			//ESECUZIONE QUERY
 			if(query!=null) {
 				stmt.execute(query);
 			}
+			
+			//ESECUZIONE QUERIES (import CSV into DB)
+			if(query_array!=null) {
+				for(String q : query_array)
+				stmt.execute(q);
+			}
+			
 			scan.close();
 			
 //			String query2 = "SELECT * FROM user";
