@@ -64,7 +64,8 @@ public class InterfacciaUtente {
 				//System.out.println(query);
 				if(query.indexOf("fiscal_code=")!=-1) {
 					cf = query.substring(29, 45);
-					rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code="+cf);
+					System.out.println(cf);
+					rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code='"+cf+"'");
 					if(rset.first()) {
 						System.out.println("Questo codice fiscale esiste già");
 						query = null;
