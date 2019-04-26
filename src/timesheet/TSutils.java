@@ -1,12 +1,14 @@
 package timesheet;
 import java.sql.Date;
-import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+import javax.naming.TimeLimitExceededException;
+
 import static java.time.temporal.ChronoUnit.HOURS;
 public class TSutils {
 	static Scanner scan = new Scanner(System.in);
@@ -188,8 +190,8 @@ public class TSutils {
 				System.out.println("Orario uscita: (hh:mm:ss)");
 				String u2 = scan.nextLine();
 				query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+data+"', 'w', '"+e1+"', '"+u1+"', '"+e2+"', '"+u2+"', '8.0')";
+//				System.out.println("Input ore da controllare, totale da calcolare!");
 				
-				System.out.println("Input ore da controllare, totale da calcolare!");
 			}
 		}catch(DateTimeParseException e) {
 			System.out.println("Formato data errato");
@@ -210,57 +212,21 @@ public class TSutils {
 			LocalDate data = LocalDate.parse(dataPermesso, f);
 			System.out.println("Inserire orario inizio permesso: (hh:mm)");
 			String orario=scan.nextLine();
-			int ora=Integer.parseInt(orario.substring(0,2));			//prendo ora in un int
-			int minuti=Integer.parseInt(orario.substring(3));  			//prendo minuti in un int
-//			System.out.println(minuti);
-			if (minuti<8)  {
-				inizioPermesso=""+ora+":"+"00";
-			 } else if (minuti >=8 && minuti <=15)  {
-				 inizioPermesso=""+ora+":"+"15";
-			 } else if (minuti>15 && minuti <=24)  {
-				 inizioPermesso=""+ora+":"+"15";
-			 } else if (minuti>24 && minuti <=30)  {
-				 inizioPermesso=""+ora+":"+"30";                      //approssimo al quarto d'ora
-			 } else if (minuti>30 && minuti <=38)  {
-				 inizioPermesso=""+ora+":"+"30";
-			 } else if (minuti>38 && minuti <=45)  {
-				 inizioPermesso=""+ora+":"+"45";
-			 } else if (minuti>45 && minuti <=54)  {
-				 inizioPermesso=""+ora+":"+"45";
-			 } else {
-				 if (ora == 23)
-					 inizioPermesso="00:00";
-				 ora=ora+1;
-				 inizioPermesso=""+ora+":"+"00";
-			 }
-		
-			System.out.println(inizioPermesso);
+			while (orario.charAt(2)!=':' || orario.length()!=5)  {
+				System.out.println("Inserire orario inizio permesso: (hh:mm)");
+				orario=scan.nextLine();
+			}
+			inizioPermesso=approssimaOrario(orario);
+//			System.out.println(inizioPermesso);
 			System.out.println("Inserire orario fine permesso: (hh:mm)");
 			orario=scan.nextLine();
-			ora=Integer.parseInt(orario.substring(0,2));			//prendo ora in un int
-			minuti=Integer.parseInt(orario.substring(3)); 
-			
-			if (minuti<8)  {
-				finePermesso=""+ora+":"+"00";
-			 } else if (minuti >=8 && minuti <=15)  {
-				 finePermesso=""+ora+":"+"15";
-			 } else if (minuti>15 && minuti <=24)  {
-				 finePermesso=""+ora+":"+"15";
-			 } else if (minuti>24 && minuti <=30)  {
-				 finePermesso=""+ora+":"+"30";                      //approssimo al quarto d'ora
-			 } else if (minuti>30 && minuti <=38)  {
-				 finePermesso=""+ora+":"+"30";
-			 } else if (minuti>38 && minuti <=45)  {
-				 finePermesso=""+ora+":"+"45";
-			 } else if (minuti>45 && minuti <=54)  {
-				 finePermesso=""+ora+":"+"45";
-			 } else {
-				 if (ora == 23)
-					 finePermesso="00:00";
-				 ora=ora+1;
-				 finePermesso=""+ora+":"+"00";
-			 }
-			System.out.println(finePermesso);	
+			while (orario.charAt(2)!=':' || orario.length()!=5)  {
+				System.out.println("Inserire orario fine permesso: (hh:mm)");
+				orario=scan.nextLine();
+			}
+
+			finePermesso=approssimaOrario(orario);  //passo orario inserito dall'utente a metodo per l'arrotondamento
+//			System.out.println(finePermesso);	
 		}catch(DateTimeParseException e) {
 			System.out.println("Formato data errato");
 		}
@@ -269,7 +235,6 @@ public class TSutils {
 		String p2 []=finePermesso.split(":");
 		LocalTime t1 = LocalTime.of(Integer.parseInt(p1[0]), Integer.parseInt(p1[1]));
 		LocalTime t2 = LocalTime.of(Integer.parseInt(p2[0]), Integer.parseInt(p2[1]));
-
 		int oreTrascorse=(int) HOURS.between(t1, t2);
 		query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+dataPermesso+"', 'p', '"+inizioPermesso+"', '"+finePermesso+"', null, null, '"+oreTrascorse+"')";
 		return query;
@@ -321,7 +286,36 @@ public class TSutils {
 		
 	}
 
-	
+	public static String approssimaOrario(String orario)  {
+		String nuovoOrario=null;
+		orario=orario.substring(0, orario.length());
+		orario=orario.trim();
+		int ora=Integer.parseInt(orario.substring(0,2));			//prendo ora in un int
+		int minuti=Integer.parseInt(orario.substring(3));  			//prendo minuti in un int
+//		System.out.println(minuti);
+		if (minuti<8)  {
+			nuovoOrario=""+ora+":"+"00";
+		 } else if (minuti >8 && minuti <=15)  {
+			 nuovoOrario=""+ora+":"+"15";
+		 } else if (minuti>15 && minuti <=24)  {
+			 nuovoOrario=""+ora+":"+"15";
+		 } else if (minuti>24 && minuti <=30)  {
+			 nuovoOrario=""+ora+":"+"30";                      //approssimo al quarto d'ora
+		 } else if (minuti>30 && minuti <=38)  {
+			 nuovoOrario=""+ora+":"+"30";
+		 } else if (minuti>38 && minuti <=45)  {
+			 nuovoOrario=""+ora+":"+"45";
+		 } else if (minuti>45 && minuti <=54)  {
+			 nuovoOrario=""+ora+":"+"45";
+		 } else {
+			 if (ora == 23)
+				 nuovoOrario="00:00";
+			 ora=ora+1;
+			 nuovoOrario=""+ora+":"+"00";
+		 }
+		
+		return nuovoOrario;
+	}
 
 	
 	
