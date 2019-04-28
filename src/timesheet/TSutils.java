@@ -1,6 +1,7 @@
 package timesheet;
+import static java.time.temporal.ChronoUnit.MINUTES;
 import java.time.LocalDate;
-//import java.time.LocalTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -170,27 +171,98 @@ public class TSutils {
 			System.out.println("Vuoi modificare gli orari di entrata/uscita?\nM per Modificarli\nQualsiasi tasto per 9:00:00-13:00:00 14:00:00-18:00:00");
 			String scelta = scan.nextLine();
 			if(scelta.equalsIgnoreCase("m")) {
-				System.out.println("Orario entrata: (hh:mm:ss)");
-				String e1 = scan.nextLine();
-//				String[] e1 = scan.nextLine().split(":");
-//				int ora = Integer.parseInt(e1[0]);
-//				int minuto = Integer.parseInt(e1[1]);
-//				LocalTime te1 = LocalTime.of(ora, minuto, 00);
-				System.out.println("Orario inizio pausa pranzo: (hh:mm:ss)");
-				String u1 = scan.nextLine();
-				System.out.println("Orario fine pausa pranzo: (hh:mm:ss)");
-				String e2 = scan.nextLine();
-				System.out.println("Orario uscita: (hh:mm:ss)");
-				String u2 = scan.nextLine();
-				query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+data+"', 'w', '"+e1+"', '"+u1+"', '"+e2+"', '"+u2+"', '8.0')";
-				System.out.println("Input ore da controllare, totale da calcolare!");
+				//inizializzazione orari
+				LocalTime t1 = LocalTime.of(9, 0), t2 = LocalTime.of(13, 0), t3 = LocalTime.of(14, 0), t4 = LocalTime.of(18, 0);
+				
+				//modifica entrata
+				System.out.println("Orario entrata 09:00\nDigita + o - per aggingere o togliere 15 minti\nC per Confermare");
+				String op = null;
+				do {
+					op = scan.nextLine();
+					while(!(op.equals("+")||op.equals("-")||op.equalsIgnoreCase("c"))) {
+						System.out.println("Scelta sbagliata\nDigita + o - per aggingere o togliere 15 minti\\nC per Confermare");
+						op = scan.nextLine();
+					}
+					if(op.equals("+")) {
+						t1 = t1.plusMinutes(15);
+						System.out.println("Orario entrata: "+t1);
+					}else if(op.equals("-")) {
+						t1 = t1.minusMinutes(15);
+						System.out.println("Orario entrata: "+t1);
+					}
+				}while(!op.equalsIgnoreCase("c"));
+				
+				//modifica pausa
+				System.out.println("Orario inizio pausa 13:00\nDigita + o - per aggingere o togliere 15 minti\nC per Confermare");
+				op = null;
+				do {
+					op = scan.nextLine();
+					while(!(op.equals("+")||op.equals("-")||op.equalsIgnoreCase("c"))) {
+						System.out.println("Scelta sbagliata\nDigita + o - per aggingere o togliere 15 minti\\nC per Confermare");
+						op = scan.nextLine();
+					}
+					if(op.equals("+")) {
+						t2 = t2.plusMinutes(15);
+						System.out.println("Orario inizio pausa: "+t2);
+					}else if(op.equals("-")) {
+						t2 = t2.minusMinutes(15);
+						System.out.println("Orario inizio pausa: "+t2);
+					}
+				}while(!op.equalsIgnoreCase("c"));
+				
+				//modifica fine pausa
+				System.out.println("Orario fine pausa 14:00\nDigita + o - per aggingere o togliere 15 minti\nC per Confermare");
+				op = null;
+				do {
+					op = scan.nextLine();
+					while(!(op.equals("+")||op.equals("-")||op.equalsIgnoreCase("c"))) {
+						System.out.println("Scelta sbagliata\nDigita + o - per aggingere o togliere 15 minti\\nC per Confermare");
+						op = scan.nextLine();
+					}
+					if(op.equals("+")) {
+						t3 = t3.plusMinutes(15);
+						System.out.println("Orario fine pausa: "+t3);
+					}else if(op.equals("-")) {
+						t3 = t3.minusMinutes(15);
+						System.out.println("Orario fine pausa: "+t3);
+					}
+				}while(!op.equalsIgnoreCase("c"));
+				
+				//modifica uscita
+				System.out.println("Orario uscita 18:00\nDigita + o - per aggingere o togliere 15 minti\nC per Confermare");
+				op = null;
+				do {
+					op = scan.nextLine();
+					while(!(op.equals("+")||op.equals("-")||op.equalsIgnoreCase("c"))) {
+						System.out.println("Scelta sbagliata\nDigita + o - per aggingere o togliere 15 minti\\nC per Confermare");
+						op = scan.nextLine();
+					}
+					if(op.equals("+")) {
+						t4 = t4.plusMinutes(15);
+						System.out.println("Orario entrata: "+t4);
+					}else if(op.equals("-")) {
+						t4 = t4.minusMinutes(15);
+						System.out.println("Orario entrata: "+t4);
+					}
+				}while(!op.equalsIgnoreCase("c"));
+				
+				double tot = 8.0;
+				if(scelta.equalsIgnoreCase("m")) {
+					tot = calcolaTotale(t1, t2, t3, t4);
+				}
+				query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+data+"', 'w', '"+t1+"', '"+t2+"', '"+t3+"', '"+t4+"', '"+tot+"')";
 			}
 		}catch(DateTimeParseException e) {
 			System.out.println("Formato data errato");
 		}
 		
-		System.out.println(query);
+		System.out.println("query: "+query);
 		return query;
+	}
+
+	private static double calcolaTotale(LocalTime t1, LocalTime t2, LocalTime t3, LocalTime t4) {
+		double tempo = MINUTES.between(t1, t2)+MINUTES.between(t3,t4);
+		return tempo/60;
 	}
 
 	public static String inserisciRigaPermesso(String idUtente) {
