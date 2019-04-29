@@ -28,9 +28,9 @@ public class InterfacciaUtente {
 		
 		return conn;
 	}
-	
+
 	public static void main(String[] args) {
-		
+	
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rset= null;
@@ -104,7 +104,8 @@ public class InterfacciaUtente {
 				query_array = DBImportExport.importCsv(path);
 				for (int i=0; i<query_array.length; i++) {
 					campi = query_array[i].split(" ");
-					cf = campi[10].substring(1, campi[10].length()-2);						rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code='"+cf+"'");
+					cf = campi[10].substring(1, campi[10].length()-2);				
+					rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code='"+cf+"'");
 					if(rset.first()) {
 						System.out.println("Questo codice fiscale esiste già");
 						query_array[i] = null;
