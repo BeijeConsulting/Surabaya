@@ -307,8 +307,8 @@ public class TSutils {
 		LocalTime t1 = LocalTime.of(Integer.parseInt(p1[0]), Integer.parseInt(p1[1]));
 		LocalTime t2 = LocalTime.of(Integer.parseInt(p2[0]), Integer.parseInt(p2[1]));
 		int oreTrascorse=(int) HOURS.between(t1, t2);
-		
-		query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+dataPermesso+"', 'p', '"+inizioPermesso+"', '"+finePermesso+"', null, null, '"+oreTrascorse+"')";
+		int oreLavorate= 8 - oreTrascorse;
+		query = "INSERT INTO timetable VALUES (null, "+idUtente+", '"+dataPermesso+"', 'p', '"+inizioPermesso+"', '"+finePermesso+"', null, null, '"+oreLavorate+"')";
 		return query;
 
 	}
@@ -408,7 +408,7 @@ public class TSutils {
 
 
 
-		creaQuery.append(" where id = "+ idUtente + " AND date='" + dataParsato +"'");			// finisce di creare la query specificando l'id
+		creaQuery.append(" where id_user = "+ idUtente + " AND date='" + dataParsato +"'");			// finisce di creare la query specificando l'id
 
 		scan.close();
 
@@ -495,7 +495,7 @@ public class TSutils {
 
 
 
-		creaQuery.append(" where id = "+ idUtente + " AND date='" + dataParsato +"'");			// finisce di creare la query specificando l'id
+		creaQuery.append(" where id_user = "+ idUtente + " AND date='" + dataParsato +"'");			// finisce di creare la query specificando l'id
 //		System.out.println(creaQuery.toString());
 		return creaQuery.toString();
 		
@@ -519,7 +519,7 @@ StringBuilder creaQuery = new StringBuilder("UPDATE timetable set ");
 
 
 
-		creaQuery.append(" where id = "+ idUtente + " AND date='" + dataParsato +"'");			// finisce di creare la query specificando l'id
+		creaQuery.append(" where id_user = "+ idUtente + " AND date='" + dataParsato +"'");			// finisce di creare la query specificando l'id
 //		System.out.println(creaQuery.toString());
 		return creaQuery.toString();
 		

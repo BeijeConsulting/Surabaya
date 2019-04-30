@@ -33,8 +33,8 @@ public class DButils {
 			stmt = conn.createStatement();
 
 			//INSERT
-			String insert = "INSERT INTO utenti VALUES (null, 'edi3', 'paperetti', 'edi3@paperetti.com', SYSDATE())";
-			stmt.execute(insert);
+//			String insert = "INSERT INTO utenti VALUES (null, 'edi3', 'paperetti', 'edi3@paperetti.com', SYSDATE())";
+//			stmt.execute(insert);
 
 			//SELECT
 			String query = "SELECT * from utenti";
@@ -44,8 +44,9 @@ public class DButils {
 				int id = rset.getInt("id");
 				String nome = rset.getString("nome");
 				String cognome = rset.getString("cognome");
+				String email = rset.getString(4);
 
-				System.out.println("" + id + ", " + nome + ", " + cognome);
+				System.out.println("" + id + ", " + nome + ", " + cognome + ", " +  email);
 			}
 
 		}
