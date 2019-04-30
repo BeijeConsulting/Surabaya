@@ -76,8 +76,9 @@ public class HDButils {
 
 	public static void main(String argv[]) throws Exception {
 		
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-				//.addAnnotatedClass(Dipendente.class)
+		SessionFactory factory = new Configuration().configure()
+				.addAnnotatedClass(Utente.class)
+				.buildSessionFactory();
 		
 		System.out.println("is open?" + factory.isOpen());
 		
@@ -101,12 +102,12 @@ public class HDButils {
 			System.out.println(u.getId());
 			System.out.println(u.getCognome());		
 			
-			StringBuilder b = new StringBuilder();
-			for (int i = 0; i < (u.getId()*5); i++) {
-				b.append('c');
-			}
-			u.setNome(b.toString());
-			System.out.println("new name : " + b.toString());
+//			StringBuilder b = new StringBuilder();
+//			for (int i = 0; i < (u.getId()*5); i++) {
+//				b.append('c');
+//			}
+//			u.setNome(b.toString());
+//			System.out.println("new name : " + b.toString());
 //			transaction.commit();
 		}
 		

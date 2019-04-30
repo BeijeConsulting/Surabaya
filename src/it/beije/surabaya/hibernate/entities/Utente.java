@@ -2,12 +2,31 @@ package it.beije.surabaya.hibernate.entities;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "utenti")
 public class Utente {
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	private int id;
+	
+	@Column(name = "cognome")
 	private String cognome;
+	
+	@Column(name = "nome")
 	private String nome;
+
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "data_iscrizione")
 	private Date dataIscrizione;
 	
 	public int getId() {
