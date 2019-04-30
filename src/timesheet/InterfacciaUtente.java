@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import it.beije.surabaya.esempi.DButils;
-
 public class InterfacciaUtente {
 
 	private static final String DB_USER = "root";

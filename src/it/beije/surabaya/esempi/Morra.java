@@ -1,7 +1,5 @@
 package it.beije.surabaya.esempi;
 
-import java.util.Arrays;
-
 public class Morra {
 
 	public static void main(String[] args) {
