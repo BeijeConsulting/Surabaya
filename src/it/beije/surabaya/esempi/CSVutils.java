@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CSVutils {
 	
-	public static List<String> getFileAsStrings(String pathFile) throws Exception {
+	public static List<String> getFileAsStrings(String pathFile) throws IOException {
 		List<String> content = new ArrayList<String>();
 		
 		BufferedReader reader = null;
@@ -23,9 +23,9 @@ public class CSVutils {
 			while(reader.ready()) {
 				content.add(reader.readLine());
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+		} catch (IOException ioEx) {
+			ioEx.printStackTrace();
+			throw ioEx;
 		} finally {
 			try {
 				reader.close();
