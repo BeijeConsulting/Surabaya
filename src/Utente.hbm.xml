@@ -4,7 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name = "it.beije.surabaya.hibernate.entities.Utente" table = "utente">
+   <class name = "it.beije.surabaya.hibernate.entities.Utente" table = "utenti">
       
       <meta attribute = "class-description">
          This class contains the utente detail. 
