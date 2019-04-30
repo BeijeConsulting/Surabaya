@@ -11,7 +11,7 @@ import java.util.*;
 
 //import chapter4.CSVutils;
 
-public class InterfacciaUtente {
+public class InterfacciaTimetable {
 
 	private static final String DB_USER = "root";
 	private static final String DB_PASSWORD = "Beije08";
@@ -40,57 +40,58 @@ public class InterfacciaUtente {
 			//utenti SELECT
 			
 			Scanner scan=new Scanner(System.in);
-			System.out.println("Cosa vuoi fare? c-Crea, m-Modifica, e-Elimina");
+			System.out.println("Orari utenti: I-Inserisci, M-Modifica");
 			
 			String scelta=scan.nextLine().toLowerCase();
 			String idUtente;
 			String query = null;
 			
-			switch (scelta) {
-			case "c":
-				query = TSutils.creaUtente();
-				String[] campi = query.split(" ");
-				String cf = campi[10].substring(0, campi[10].length()-1);
-				rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code="+cf);
-				if(rset.first()) {
-					System.out.println("Questo codice fiscale esiste già");
-					query = null;
-				}
-				break;
-			case "m":
-				System.out.println("ID da modificare:");				
+			scelta=scan.nextLine().toLowerCase();
+			
+			if(scelta.equalsIgnoreCase("i")) {
+				System.out.println("Inserisci ID utente");
 				idUtente = scan.nextLine();
-				query = TSutils.modificaUtente(idUtente);
-				//System.out.println(query);
-				if(query.indexOf("fiscal_code=")!=-1) {
-					cf = query.substring(29, 45);
-					rset = stmt.executeQuery("SELECT * FROM user WHERE fiscal_code='"+cf+"'");
-					if(rset.first()) {
-						System.out.println("Questo codice fiscale esiste già");
-						query = null;
-					}
+				System.out.println("Inserisci riga orario: L-Lavorativo, P-Permesso, F-Ferie, M-Malattia");
+				
+				switch (scelta) {
+				case "l":
+					query = TSutils.inserisciRigaLavorativa(idUtente);
+					break;
+				case "p":
+					query =TSutils.inserisciRigaPermesso(idUtente);
+					break;
+				case "f":
+					query =TSutils.inserisciRigaFerie(idUtente);
+					break;
+				case "m":
+					query =TSutils.inserisciRigaMalattia(idUtente);
+					break;
+				default:
+					System.out.println("Scelta sbagliata");
 				}
-				//System.out.println(query.substring(29, 45));
-				break;
-			case "e":
-				System.out.println("ID da eliminare:");
+			}else if(scelta.equalsIgnoreCase("m")) {
+				System.out.println("Inserisci ID utente");
 				idUtente = scan.nextLine();
-				rset = stmt.executeQuery("SELECT * FROM timetable WHERE id_user="+idUtente);
-				if(rset.first()) {
-					System.out.println("Questo utente ha delle tabelle orario associate, "
-							+ "sicuro di volerle cancellare? YES per confermare");
-					String sicurezza = scan.nextLine();
-					if(sicurezza.equalsIgnoreCase("yes")){
-						stmt.execute("DELETE FROM timetable WHERE id_user="+idUtente);
-					}else {
-						break;
-					}
+				System.out.println("Inserisci riga orario: L-Lavorativo, P-Permesso, F-Ferie, M-Malattia");
+				scelta=scan.nextLine().toLowerCase();
+				switch (scelta) {
+				case "l":
+					query =TSutils.modificaRigaLavorativa(idUtente);
+					break;
+				case "p":
+					query =TSutils.modificaRigaPermessi(idUtente);
+					break;
+				case "f":
+					query =TSutils.modificaRigaFerie(idUtente);
+					break;
+				case "m":
+					query =TSutils.modificaRigaMalattia(idUtente);
+					break;
+				default:
+					System.out.println("Scelta sbagliata");
 				}
-				query = TSutils.eliminaUtente(idUtente);
-				break;
-			default: 
-				System.out.println("Scelta sbagliata");
 			}
+			
 			
 			if(query!=null) {
 				stmt.execute(query);
