@@ -6,6 +6,7 @@ import java.util.Random;
 
 import it.beije.surabaya.esempi.CSVutils;
 
+
 public class GeneratoreCSVrubrica  {
 	
 	private static List<String> nomi;
@@ -102,6 +103,7 @@ public class GeneratoreCSVrubrica  {
 		}
 		
 		CSVutils.writeRowsInFile("C:\\Users\\Padawan01\\Desktop\\rubrica_random.txt", records);
+
 		
 		System.out.println("FATTO");
 	}
