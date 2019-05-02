@@ -17,6 +17,17 @@ import it.beije.surabaya.hibernate.entities.Utente;
 
 public class HDButils {
 	
+	public static Session getSession() throws Exception {
+		
+		SessionFactory factory = new Configuration().configure()
+				.addAnnotatedClass(Utente.class)
+				.buildSessionFactory();
+		
+		System.out.println("is open?" + factory.isOpen());
+				
+		return factory.openSession();
+	}
+	
 //	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 //		Connection conn = null;
 //		
