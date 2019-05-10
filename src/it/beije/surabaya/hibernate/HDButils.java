@@ -12,7 +12,8 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
-import it.beije.surabaya.hibernate.entities.Utente;
+import it.beije.surabaya.hibernate.entities.User;
+
 
 
 public class HDButils {
@@ -77,7 +78,7 @@ public class HDButils {
 	public static void main(String argv[]) throws Exception {
 		
 		SessionFactory factory = new Configuration().configure()
-				.addAnnotatedClass(Utente.class)
+				.addAnnotatedClass(User.class)
 				.buildSessionFactory();
 		
 		System.out.println("is open?" + factory.isOpen());
@@ -92,15 +93,18 @@ public class HDButils {
 //			System.out.println(utente);
 //		}
 		
-		Criteria criteria = session.createCriteria(Utente.class);
+		Criteria criteria = session.createCriteria(User.class);
 		List utenti = criteria.list();//.add(Restrictions.eq("nome", "pippo"))
 
+		
 		Iterator itr = utenti.iterator();
+
+		
 		while (itr.hasNext()) {
 //			Transaction transaction = session.beginTransaction();
-			Utente u = (Utente) itr.next();
-			System.out.println(u.getId());
-			System.out.println(u.getCognome());		
+			User u = (User) itr.next();
+			System.out.println(u.getId() + u.getFirst_name());
+
 			
 //			StringBuilder b = new StringBuilder();
 //			for (int i = 0; i < (u.getId()*5); i++) {
@@ -111,6 +115,7 @@ public class HDButils {
 //			transaction.commit();
 		}
 		
+	
 		
 		//System.out.println(query.list());
 
@@ -119,5 +124,11 @@ public class HDButils {
 		session.close();
 		factory.close();
 		System.out.println("is open?" + factory.isOpen());
+		
+		User ciao = new User();
+		System.out.println(ciao.getUser(1).getFirst_name());
+		System.out.println(ciao.getUser("ZCCDVD95B19F842X").getFirst_name());
+		
+	
 	}
 }
