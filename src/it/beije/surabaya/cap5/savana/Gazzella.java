@@ -10,4 +10,10 @@ public class Gazzella implements Preda, Erbivoro {
 		System.out.println("hai voglia a correre...");
 	}
 
+	@Override
+	public void ciao() {
+		System.out.println("La gazzella saluta");
+		
+	}
+
 }

@@ -4,7 +4,7 @@ public interface Carnivoro {
 	
 	public abstract void mangioCarne();
 	
-	public void mangioInteriora() {
+	public default void mangioInteriora() {
 		System.out.println("mangio la trippa...");
 	}
 

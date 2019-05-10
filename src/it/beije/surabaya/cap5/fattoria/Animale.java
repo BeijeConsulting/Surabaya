@@ -26,7 +26,7 @@ public abstract class Animale implements EssereVivente {
 	}
 
 	public void riprodursi() {
-		System.out.println("riprodursi...");
+		System.out.println("Animale riprodursi...");
 	}	
 
 }

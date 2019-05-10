@@ -4,6 +4,6 @@ public interface Erbivoro {
 	
 	public abstract void mangioErba();
 	
-	public void ciao() {}
+	public void ciao();
 	
 }
