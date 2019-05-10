@@ -37,6 +37,18 @@ public class HDButils {
 //		return conn;
 //	}
 
+	public static Session getSession() throws Exception {
+		
+		SessionFactory factory = new Configuration().configure()
+				.addAnnotatedClass(Utente.class)
+				.buildSessionFactory();
+		
+		System.out.println("is open?" + factory.isOpen());
+		
+		return factory.openSession();
+		
+	}
+	
 //	public static void main(String argv[]) {
 //		
 //		Connection conn = null;
