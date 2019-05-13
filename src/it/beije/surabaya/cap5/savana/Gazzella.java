@@ -10,4 +10,7 @@ public class Gazzella implements Preda, Erbivoro {
 		System.out.println("hai voglia a correre...");
 	}
 
+	public String toString() {
+		return "Gazzella";
+	}
 }
