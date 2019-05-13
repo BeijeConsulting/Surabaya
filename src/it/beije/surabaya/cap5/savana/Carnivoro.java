@@ -4,11 +4,14 @@ public interface Carnivoro {
 	
 	void mangioCarne();
 	
-	default public void mangioInteriora() {
+
+	public default void mangioInteriora() {
 		System.out.println("mangio la trippa...");
 	}
 
-	default public void mangio(Carnivoro p) {
-		System.out.println("ho mangiato un: " + p);
+
+	public default void mangio(Animale a) {
+		System.out.println("mangio un animale");
 	}
+
 }
