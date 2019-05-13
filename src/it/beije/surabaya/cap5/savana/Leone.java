@@ -1,7 +1,7 @@
 package it.beije.surabaya.cap5.savana;
 import it.beije.surabaya.cap5.fattoria.Animale;
 
-public class Leone implements Predatore, Carnivoro {
+public class Leone extends Animale implements Predatore, Carnivoro {
 
 	public void mangioInteriora() {
 		System.out.println("mangio la trippa...");
@@ -34,6 +34,8 @@ public class Leone implements Predatore, Carnivoro {
 		
 		leone.mangio((Erbivoro) new Gazzella());
 		leone.mangio((Preda) new Opossum());
+		//se leone non estende animale il meteodo a seguire non funziona
+		leone.mangio(new Leone());
 		
 		
 		
