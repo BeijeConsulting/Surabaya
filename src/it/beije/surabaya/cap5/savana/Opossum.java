@@ -16,4 +16,15 @@ public class Opossum implements Predatore, Preda, Onnivoro {
 		System.out.println("mangio la busecca...");
 	}
 
+	public String toString() {
+		return "Opossum";
+	}
+
+	@Override
+	public void mangio(Preda p) {
+
+		System.out.println("Sono un opossum ed oggi ho mangiato " + p);
+
+	}
+	
 }
