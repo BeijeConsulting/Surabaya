@@ -1,6 +1,6 @@
 package it.beije.surabaya.cap5.savana;
 
-public class Opossum implements Predatore, Preda, Onnivoro {
+public class Opossum extends Animale implements Predatore, Preda, Onnivoro {
 
 	public void mangioErba() {}
 
@@ -14,6 +14,10 @@ public class Opossum implements Predatore, Preda, Onnivoro {
 
 	public void mangioInteriora() {
 		System.out.println("mangio la busecca...");
+	}
+	
+	public String toString() {
+		return "Opossum";
 	}
 
 	@Override

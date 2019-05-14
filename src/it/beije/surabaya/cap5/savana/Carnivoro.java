@@ -8,4 +8,8 @@ public interface Carnivoro {
 		System.out.println("mangio la trippa...");
 	}
 
+	public default void mangio(Animale a) {
+		System.out.println("mangio un animale");
+	}
+
 }
