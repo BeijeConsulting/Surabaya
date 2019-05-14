@@ -2,6 +2,9 @@ package it.beije.surabaya.cap5.motorizzazione;
 
 public abstract class Veicolo {
 	
+	protected double cilindrata;
+	protected double peso;
+	
 	public abstract int getNumRuote();
 	public abstract double getCilindrata();
 	public abstract int getNumPosti();
