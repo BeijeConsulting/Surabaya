@@ -1,10 +1,10 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Utilitaria extends Automobile {
+interface Utilitaria {
 
-	private static String nome = "sono una utilitaria";
+	String nome = "sono una utilitaria";
 	
-	public static String getNome () {
+	public default  String getNome () {
 		return nome;
 	}
 }

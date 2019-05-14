@@ -1,17 +1,17 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Ciclomotore extends Veicolo{
+interface Ciclomotore{
 	
-	private final int numRuote = 2;
+	int numRuote = 2;
 	
-	public  String impenna() {
+	public default  String impenna() {
 		return "so fare impennate";
 	}
 	
-	public String viaggia() {
+	public default String viaggia() {
 		return "viaggio su " + numRuote + " ruote";
 	}
-	public  int getNumRuote() {
+	public default  int getNumRuote() {
 		return numRuote;
 	}
 }

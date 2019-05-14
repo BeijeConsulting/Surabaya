@@ -1,9 +1,9 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Suv extends Automobile {
-	private static String nome = "sono un suv";
+interface Suv{
+	String nome = "sono un suv";
 	
-	public static String getNome () {
+	public default  String getNome () {
 		return nome;
 	}
 }

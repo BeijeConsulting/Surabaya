@@ -1,13 +1,13 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public class Test {
+public class Run {
 
 	public static void main(String[] args) {
 		
-		Fiat_Utilitaria f = new Fiat_Utilitaria();
+		Automobile f = new Fiat_500();
 		
 		System.out.println(f.toString() + " " + f.viaggia());
-
+	
 		Jeep j = new Jeep();
 		
 		System.out.println(j.toString() + " " + j.viaggia());
@@ -15,6 +15,13 @@ public class Test {
 		Ciclomotore d = new Ducati();
 		
 		System.out.println(d.toString() + " " + d.viaggia() + " " + d.impenna());
+		
+		if(f.getNumRuote() > d.getNumRuote())
+			System.out.println("fiat ha più ruote");
+		else
+			System.out.println("ducati ha piu ruote");
+		
+		
 	}
 
 }

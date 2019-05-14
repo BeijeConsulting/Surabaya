@@ -1,9 +1,9 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Berlina {
-	private String nome = "sono una berlina";
+interface Berlina {
+	String nome = "sono una berlina";
 	
-	public String getNome () {
+	public default String getNome () {
 		return nome;
 	}
 }
