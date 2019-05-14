@@ -48,5 +48,4 @@ public class Jeep extends Suv {
 	public String viaggia() {
 		return "viaggio su 4 ruote, e funziono anche nel deserto";
 	}
-
 }
