@@ -6,7 +6,7 @@ public abstract class Veicolo {
 	public abstract double getCilindrata();
 	public abstract int getNumPosti();
 	public abstract double getPeso();
-	public abstract void viaggia();
+	public abstract String viaggia();
 
 }
 
