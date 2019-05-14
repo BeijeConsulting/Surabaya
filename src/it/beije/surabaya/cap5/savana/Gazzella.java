@@ -9,10 +9,18 @@ public class Gazzella extends Animale implements Preda, Erbivoro {
 	public void scappa() {
 		System.out.println("hai voglia a correre...");
 	}
+<<<<<<< HEAD
 	public String toString() {
 		return "Gazzella";
 	}
 	public int peso(){
 		return 18;
 	}
+=======
+
+	public String toString() {
+		return "Gazzella";
+	}
+
+>>>>>>> refs/remotes/origin/master
 }

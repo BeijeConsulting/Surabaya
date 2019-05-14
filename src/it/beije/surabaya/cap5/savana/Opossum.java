@@ -15,6 +15,7 @@ public class Opossum extends Animale implements Predatore, Preda, Onnivoro {
 	public void mangioInteriora() {
 		System.out.println("mangio la busecca...");
 	}
+<<<<<<< HEAD
 	public void mangio(Animale a) {
 		System.out.println("Oggi ho mangiato "+a.toString());
 	}
@@ -25,4 +26,11 @@ public class Opossum extends Animale implements Predatore, Preda, Onnivoro {
 	public int peso(){
 		return 8;
 	}
+=======
+	
+	public String toString() {
+		return "Opossum";
+	}
+
+>>>>>>> refs/remotes/origin/master
 }

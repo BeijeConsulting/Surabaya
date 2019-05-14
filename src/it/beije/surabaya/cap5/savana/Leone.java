@@ -6,6 +6,7 @@ public class Leone extends Animale implements Predatore, Carnivoro {
 		System.out.println("mangio una bistecca...");
 	}
 	
+<<<<<<< HEAD
 //	public void mangio(Preda p) {
 //		System.out.println("Oggi ho mangiato "+p.toString());
 //	}
@@ -22,9 +23,12 @@ public class Leone extends Animale implements Predatore, Carnivoro {
 	public void mangio(Animale a) {
 		System.out.println("Oggi ho mangiato "+a.toString());
 	}
+=======
+>>>>>>> refs/remotes/origin/master
 	public void caccia() {
 		System.out.println("ogni mattina etc etc...");
 	}
+<<<<<<< HEAD
 	public String toString() {
 		return "Leone";
 	}
@@ -39,4 +43,15 @@ public class Leone extends Animale implements Predatore, Carnivoro {
 	public int peso() {
 		return 40;
 	}
+=======
+	
+	public static void main(String[] args) {
+		Leone leone = new Leone();
+		
+		leone.mangio((Animale)new Gazzella());
+		leone.mangio((Preda)new Opossum());
+		leone.mangio(new Leone());
+	}
+
+>>>>>>> refs/remotes/origin/master
 }
