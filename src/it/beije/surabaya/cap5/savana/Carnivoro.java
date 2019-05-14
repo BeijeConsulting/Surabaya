@@ -16,4 +16,8 @@ public interface Carnivoro {
 		System.out.println("mangio un carnivoro");
 	}
 
+	public default void mangio(Animale a) {
+		System.out.println("mangio un animale");
+	}
+
 }
