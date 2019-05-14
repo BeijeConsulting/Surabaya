@@ -10,6 +10,8 @@ public class Fiat500 extends Automobile implements Utilitaria{
 	public Fiat500() {
 		super.cilindrata = 875;
 		super.peso = 960;
+		super.model = "Fiat500";
+		super.brand = "Fiat";
 	}
 
 	public int getNumPosti() {

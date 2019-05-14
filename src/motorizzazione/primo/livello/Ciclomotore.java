@@ -22,5 +22,16 @@ public abstract class Ciclomotore extends Veicolo {
 	
 	public abstract void impenna();
 	
+	public String getModel() {
+		return model;
+	}
+	
+	public String getBrand() {
+		return brand;
+	}
+	
+	public String getModelBrand() {
+		return "Marchio: " + brand +"\n"+"Modello"+ ": " + model;
+	}
 	
 }

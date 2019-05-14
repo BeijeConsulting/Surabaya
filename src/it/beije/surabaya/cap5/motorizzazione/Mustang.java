@@ -11,6 +11,8 @@ public class Mustang extends Automobile implements Sportiva{
 	public Mustang() {
 		super.cilindrata = 2300;
 		super.peso = 1655;
+		super.brand = "Ford";
+		super.model ="Mustang EcoBoost";
 	}
 	
 	

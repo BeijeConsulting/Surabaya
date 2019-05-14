@@ -4,6 +4,8 @@ public abstract class Veicolo {
 	
 	protected double cilindrata;
 	protected double peso;
+	protected String model = "";
+	protected String brand = "";
 	
 	public abstract int getNumRuote();
 	public abstract double getCilindrata();
@@ -11,9 +13,10 @@ public abstract class Veicolo {
 	public abstract void viaggia();
 	
 	
-	//getModel();
-	//getBrand();
-	//getName();
+	public abstract String getModel();
+	public abstract String getBrand();
+	
+	public abstract String getModelBrand();
 
 }
 
