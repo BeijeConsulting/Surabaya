@@ -1,6 +1,6 @@
 package it.beije.surabaya.cap5.savana;
 
-public class Gazzella implements Preda, Erbivoro {
+public class Gazzella extends Animale implements Preda, Erbivoro {
 
 	public void mangioErba() {
 		System.out.println("pure scondita...");

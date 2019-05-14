@@ -7,5 +7,5 @@ public interface Predatore {
 	public default void mangio(Preda p) {
 		System.out.println("Oggi ho mangiato " + p);
 	}
-	
+
 }
