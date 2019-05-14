@@ -7,7 +7,9 @@ public abstract class Veicolo {
 	public abstract int getNumPosti();
 	public abstract double getPeso();
 	public abstract void viaggia();
-
+	public abstract String brand();
+	public abstract boolean camporella();
+	public abstract boolean cool();
 }
 
 /*
