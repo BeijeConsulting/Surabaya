@@ -7,5 +7,16 @@ public abstract class Automobile extends Veicolo{
 		// TODO Auto-generated method stub
 		return 4;
 	}
+	
+	@Override
+	public int getNumPosti() {
+		return 4;
+		
+	}
+	
+	@Override
+	public void viaggia(){
+		System.out.println("Viaggio su " + getNumRuote() + " ruote..");
+	}
 
 }
