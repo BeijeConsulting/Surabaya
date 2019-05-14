@@ -13,6 +13,6 @@ public abstract class Utilitaria extends Automobile {
 	
 	public boolean pagaSuperBollo() {  //PRATICAMENTE NESSUNA LO PAGA
 		
-		return true;
+		return false;
 	}
 }

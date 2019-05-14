@@ -19,5 +19,9 @@ public class Alfa_Romeo_Giulia extends Berlina {
 		
 		return "FWD";
 	}
-
+	
+public boolean pagaSuperBollo() {  
+		
+		return false;
+	}
 }

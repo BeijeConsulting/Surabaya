@@ -14,10 +14,9 @@ public class Mercedes_AMG_G63 extends Suv {
 		return 6;
 	}
 
-	
-	public boolean pagaSuperBollo() {
-		
-		return true;
+	public boolean pagaSuperBollo ()  {
+		return true;				
 	}
+
 	
 }

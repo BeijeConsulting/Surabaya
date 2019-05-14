@@ -18,7 +18,11 @@ public class VW_Golf extends Berlina {
 		
 		return "AWD";
 	}
-
+	
+public boolean pagaSuperBollo() {  
+		
+		return false;
+	}
 	
 	
 }
