@@ -7,7 +7,9 @@ public abstract class Veicolo {
 	public abstract int getNumPosti();
 	public abstract double getPeso();
 	public abstract void viaggia();
-	
+	//getBrand();
+	//getModel();
+	//getName();
 }
 
 /*
