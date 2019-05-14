@@ -14,6 +14,11 @@ public class RenaultCaptur extends Suv {
 		
 	}
 	
-	
+	public static void main (String[]args) {
+		RenaultCaptur r= new RenaultCaptur();
+		System.out.println("il suo peso è "+ r.getPeso());
+		System.out.println("il numero ruote è "+ r.getNumRuote());
+		System.out.println("la velocità massima è "+ r.VelocitaMax()+ " km/h");
+	}
 
 }

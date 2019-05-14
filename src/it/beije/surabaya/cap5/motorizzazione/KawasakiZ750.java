@@ -6,8 +6,8 @@ public class KawasakiZ750 extends Ciclomotore {
 	}
 
 	
-	public void inpenna() {
-	
+	public String inpenna() {
+		return "alla grande...";
 	}
 
 
@@ -25,7 +25,12 @@ public class KawasakiZ750 extends Ciclomotore {
 	public void viaggia() {
 		
 	}
-	
+	public static void main (String[]args) {
+		KawasakiZ750 k= new KawasakiZ750();
+		System.out.println("inpenna?? "+ k.inpenna());
+		System.out.println("il numero ruote è "+ k.getNumRuote());
+		System.out.println("la velocità massima è "+ k.VelocitaMax()+ " km/h");
+	}
 	
 		
 		

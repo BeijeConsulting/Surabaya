@@ -14,11 +14,14 @@ public class  Fiat500 extends Utilitaria{
 		return 1.0;
 	}
 	
-	public static int NumeroPorte() {
+	public int NumeroPorte() {
 		return 3;
 	}
 	
 	public static void main (String[]args) {
 		Fiat500 f= new Fiat500();
+		System.out.println("il numero porte è "+ f.NumeroPorte());
+		System.out.println("il numero ruote è "+ f.getNumRuote());
+		System.out.println("la velocità massima è "+ f.VelocitaMax()+ " km/h");
 	}
 }
