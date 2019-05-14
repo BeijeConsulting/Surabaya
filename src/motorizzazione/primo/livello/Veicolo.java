@@ -1,4 +1,4 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.primo.livello;
 
 public abstract class Veicolo {
 	
@@ -7,9 +7,13 @@ public abstract class Veicolo {
 	
 	public abstract int getNumRuote();
 	public abstract double getCilindrata();
-	public abstract int getNumPosti();
 	public abstract double getPeso();
 	public abstract void viaggia();
+	
+	
+	//getModel();
+	//getBrand();
+	//getName();
 
 }
 

@@ -1,22 +1,22 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.primo.livello;
 
 public abstract class Automobile extends Veicolo{
 	
 	private int nRuote = 4;
-	private int nPosti = 4;	//per default vengono considerati 4 posti
 	
 	public int getNumRuote() {
 		return nRuote;
 	}
 	
-	public int getNumPosti() {
-		return nPosti;
-	}
-	
 	public void viaggia() {
 		System.out.println("Veicolo in movimento...");
 	}
+		
+	public double getCilindrata() {
+		return cilindrata;
+	}
 	
-	public abstract int getNumPorte();
-	
+	public double getPeso() {
+		return peso;
+	}
 }

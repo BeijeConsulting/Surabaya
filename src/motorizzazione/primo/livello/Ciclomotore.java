@@ -1,4 +1,4 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.primo.livello;
 
 public abstract class Ciclomotore extends Veicolo {
 	
