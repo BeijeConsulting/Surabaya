@@ -4,4 +4,5 @@ public interface Preda {
 	
 	public abstract void scappa();
 
+	
 }
