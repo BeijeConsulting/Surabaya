@@ -11,7 +11,7 @@ public abstract class Veicolo {
 }
 
 /*
-Veicolo [ getNumRuote, getCilindrata, getNumPosti, getPeso, viaggia ]
+Veicolo [ getNumRuote, getCilindrata, getNumPosti, getPeso, viaggia, getMarca, getModello, getMarcaModello ]
 
 Ciclomotore [ impenna ]
 Automobile [ ]
@@ -22,10 +22,16 @@ Sportiva
 Suv
 Furgone
 
+Benzina
+Gasolio
+Metano
+Gpl
+Elettrico
 
 Fiat_500
 VW_Golf
 Renault_Captur
 Toyota_Yaris
-....
+Smart
+
 */
