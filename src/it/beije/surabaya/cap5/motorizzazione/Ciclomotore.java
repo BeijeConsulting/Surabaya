@@ -1,22 +1,18 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Ciclomotore extends Veicolo{
+public abstract interface Ciclomotore{
 	
 	public abstract void impenna();
 	
-	@Override
-	public int getNumRuote() {
-		// TODO Auto-generated method stub
+	public default int getNumRuote() {
 		return 2;
 	}
 	
-	@Override
-	public int getNumPosti() {
-		return 2;	
+	public default int getNumPosti() {
+		return 2;
 	}
 	
-	@Override
-	public void viaggia(){
+	public default void viaggia(){
 		System.out.println("Viaggio su " + getNumRuote() + " ruote..");
 	}
 	

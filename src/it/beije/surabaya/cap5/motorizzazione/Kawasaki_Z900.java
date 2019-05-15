@@ -1,6 +1,6 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public class Kawasaki_Z900 extends Moto {
+public class Kawasaki_Z900 extends Veicolo implements Moto {
 
 	@Override
 	public void impenna() {

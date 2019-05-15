@@ -1,6 +1,6 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Moto extends Ciclomotore{
+public abstract interface Moto extends Ciclomotore{
 	
 	public abstract void indossaCascoIntegrale();
 

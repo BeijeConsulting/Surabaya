@@ -1,6 +1,6 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public class Fiat_500 extends Utilitaria {
+public class Fiat_500 extends Veicolo implements Utilitaria  {
 
 	@Override
 	public double getCilindrata() {
@@ -12,11 +12,17 @@ public class Fiat_500 extends Utilitaria {
 		return 970;
 	}
 
-	@Override
-	public void viaggia() {
+//	@Override
+//	public int getNumRuote() {
+//		return 5;
+//	}
+//	@Override
+//	public void viaggia() {
+//
+//		System.out.println("Viaggio in fiaaat");
+//		
+//	}
 
-		System.out.println("Viaggio in fiaaat");
-		
-	}
+	
 
 }

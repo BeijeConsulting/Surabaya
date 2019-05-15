@@ -1,9 +1,9 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public interface Utilitaria extends Automobile{
+public interface Sportiva {
 	
 	public default int getNumPosti() {
-		return 4;
+		return 2;
 	}
 
 }

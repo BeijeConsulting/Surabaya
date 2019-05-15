@@ -1,6 +1,6 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public class Piaggio_Vespa extends Scooter{
+public class Piaggio_Vespa extends Veicolo implements Scooter{
 
 	@Override
 	public void indossaCasco() {

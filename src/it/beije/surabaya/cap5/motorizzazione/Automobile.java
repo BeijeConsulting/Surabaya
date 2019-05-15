@@ -1,21 +1,14 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Automobile extends Veicolo{
+public abstract interface Automobile{
 	
-	@Override
-	public int getNumRuote() {
-		// TODO Auto-generated method stub
+	public abstract int getNumPosti();
+	
+	public default int getNumRuote() {
 		return 4;
 	}
 	
-	@Override
-	public int getNumPosti() {
-		return 4;
-		
-	}
-	
-	@Override
-	public void viaggia(){
+	public default void viaggia(){
 		System.out.println("Viaggio su " + getNumRuote() + " ruote..");
 	}
 

@@ -2,11 +2,8 @@ package it.beije.surabaya.cap5.motorizzazione;
 
 public abstract class Veicolo {
 	
-	public abstract int getNumRuote();
 	public abstract double getCilindrata();
-	public abstract int getNumPosti();
 	public abstract double getPeso();
-	public abstract void viaggia();
 
 }
 
