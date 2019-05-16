@@ -8,4 +8,7 @@ public interface Predatore {
 		System.out.println("oggi ho mangiato una preda ");
 	}
 
+	public default void mangio(Preda p) {
+		System.out.println("oggi ho mangiato " + p);
+	}
 }

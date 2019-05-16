@@ -1,9 +1,9 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Berlina extends Automobile {
+public interface Berlina extends Automobile {
  
-	public int getNome() {
-		return ruote;
+	public default int getNumPosti() {
+		return 4;
 	}
 	
 }

@@ -1,8 +1,10 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Utilitaria extends Automobile {
+public interface Utilitaria extends Automobile {
 
-	public int getNome() {
-		return ruote;
+	public default int getNumPosti() {
+		return 4;
 	}
-}
+	
+	}
+

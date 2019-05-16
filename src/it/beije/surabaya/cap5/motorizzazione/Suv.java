@@ -1,8 +1,9 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public abstract class Suv extends Automobile {
+public interface Suv extends Automobile {
 
-	public int getNome() {
-		return ruote;
-	}
+	public default int getNumPosti() {
+		return 4;
+}
+	
 }
