@@ -27,11 +27,15 @@ Gasolio
 Metano
 Gpl
 Elettrico
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 
 Fiat_500
 VW_Golf
 Renault_Captur
 Toyota_Yaris
-....
+Smart
+
 */
