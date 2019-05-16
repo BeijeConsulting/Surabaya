@@ -3,10 +3,10 @@ package it.beije.surabaya.cap5.motorizzazione;
 import java.util.Date;
 
 public class Risorsa {
-	public int id;
-	public Veicolo veicolo;
-	public Date dataInizio, dataFine;
-	public boolean libero;
+	private int id;
+	private Veicolo veicolo;
+	private Date dataInizio, dataFine;
+	private boolean libero;
 	
 	public Risorsa(int id, Veicolo veicolo, Date dataInizio, Date dataFine, boolean libero) {
 		this.id  = id;
