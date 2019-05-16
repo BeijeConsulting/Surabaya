@@ -1,7 +1,7 @@
 package it.beije.surabaya.pool;
 
 import java.time.LocalDate;
-
+//Bean
 public class Prestito {
 	
 	private String auto;
