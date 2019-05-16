@@ -8,7 +8,7 @@ import it.beije.surabaya.cap5.motorizzazione.*;
 public class Sistema {
 
 
-	private static Map<Integer, ArrayList<Automobile>> automobili = new HashMap<>();
+	private static Map<String, ArrayList<Automobile>> automobili = new HashMap<>();
 	static {
 		ArrayList<Automobile> fiat = new ArrayList<>();
 		fiat.add(new Fiat_500());
@@ -18,33 +18,32 @@ public class Sistema {
 		alfa.add(new Alfa_Quadrifoglio());
 		alfa.add(new Alfa_Quadrifoglio());
 
-		automobili.put(1, fiat);
-		automobili.put(2, alfa);
+		automobili.put("Fiat 500", fiat);
+		automobili.put("Alfa Quadrifoglio", alfa);
 	}
 	
-	public static Automobile getFiat() throws IndexOutOfBoundsException{
+	public static Automobile getAuto(String nome) throws IndexOutOfBoundsException{
 		
-		if(automobili.containsKey(1)) {
-			ArrayList<Automobile> f = automobili.get(1);
-			Automobile fiat = f.get(0);
+		if(automobili.containsKey(nome)) {
+			ArrayList<Automobile> a = automobili.get(nome);
+			Automobile auto = a.get(0);
 			try {
-				f.remove(0);
+				a.remove(0);
 			}catch(IndexOutOfBoundsException e) {
-				System.out.println("fiat esaurite");
 				throw e;
 			}
-			automobili.put(1, f);
-			return fiat;
+			automobili.put(nome, a);
+			return auto;
 		}
 			
 		return null;
 	
 	}
 	
-	public static void returnFiat(Automobile a) {
-		ArrayList<Automobile> f = automobili.get(1);
-		f.add(a);
-		automobili.put(1, f);
+	public static void returnFiat(Automobile auto) {
+		ArrayList<Automobile> a = automobili.get("Fiat 500");
+		a.add(auto);
+		automobili.put("Fiat 500", a);
 	}
 	
 	
@@ -52,30 +51,47 @@ public class Sistema {
 	public static void main(String[] args) {
 
 		System.out.println(automobili);
-		Automobile a1 = null, a2 = null, a3 = null;
+		Automobile a1 = null, a2 = null, a3 = null, a4 = null;
 		try {
-			a1 = getFiat();
+			a1 = getAuto("Fiat 500");
 			a1.viaggia();
 		}catch(IndexOutOfBoundsException e){
-			System.out.println("Stai a piedi");
+			System.out.println("Fiat esaurite");
 		}
 		
 		try {
-			a2 = getFiat();
+			a2 = getAuto("Fiat 500");
 			a2.viaggia();
 		}catch(IndexOutOfBoundsException e){
-			System.out.println("Stai a piedi");
+			System.out.println("Fiat esaurite");
 		}
 		
 		try {
-			a3 = getFiat();
+			a3 = getAuto("Fiat 500");
 			a3.viaggia();
 		}catch(IndexOutOfBoundsException e){
-			System.out.println("Stai a piedi");
+			System.out.println("Fiat esaurite");
 		}
+		
 		System.out.println(automobili);
 		
 		returnFiat(a2);
+		
+		System.out.println(automobili);
+		
+		try {
+			a2 = getAuto("Alfa Quadrifoglio");
+			a2.viaggia();
+		}catch(IndexOutOfBoundsException e){
+			System.out.println("Alfa esaurite");
+		}		
+		
+		try {
+			a4 = getAuto("Alfa Quadrifoglio");
+			a4.viaggia();
+		}catch(IndexOutOfBoundsException e){
+			System.out.println("Alfa esaurite");
+		}
 		
 		System.out.println(automobili);
 
