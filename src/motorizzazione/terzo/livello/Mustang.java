@@ -1,10 +1,11 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.terzo.livello;
 
 import motorizzazione.primo.livello.Automobile;
 import motorizzazione.primo.livello.Veicolo;
+import motorizzazione.secondo.livello.Diesel;
 import motorizzazione.secondo.livello.Sportiva;
 
-public class Mustang extends Automobile implements Sportiva{
+public class Mustang extends Automobile implements Sportiva,Diesel{
 
 	private final int n = 2;
 	

@@ -1,4 +1,6 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.terzo.livello;
+
+import motorizzazione.primo.livello.MotoGP;
 
 public class Honda extends MotoGP {
 

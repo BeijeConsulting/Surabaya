@@ -1,4 +1,4 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.terzo.livello;
 
 import motorizzazione.primo.livello.Automobile;
 import motorizzazione.secondo.livello.Suv;

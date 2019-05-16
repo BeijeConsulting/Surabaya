@@ -1,4 +1,4 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.terzo.livello;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +13,16 @@ public class Run {
 		System.out.println("*******************************");
 		
 		
-		MercedesE c = new MercedesE();
+		MercedesE mercedes = new MercedesE();
 
 		System.out.println("\n\n---------------> SPECIFICHE TECNICHE MERCEDES E");
-		System.out.println("Brand:" + c.getBrand());
-		System.out.println("Modello:" + c.getModel());
-		System.out.println("Cilindrata: "+c.getCilindrata()+"cc");
-		System.out.println("Peso: "+c.getPeso()+"Kg");
-		System.out.println("Numero posti:" + c.getNumPosti());
+		System.out.println("Brand:" + mercedes.getBrand());
+		System.out.println("Modello:" + mercedes.getModel());
+		System.out.println("Cilindrata: "+mercedes.getCilindrata()+"cc");
+		System.out.println("Peso: "+mercedes.getPeso()+"Kg");
+		System.out.println("Numero posti:" + mercedes.getNumPosti());
 		System.out.println("**************** TEST DRIVE MERCEDES **************");
-		c.viaggia();
+		mercedes.viaggia();
 		System.out.println("----------------------------------------------------");
 		
 		
@@ -35,7 +35,7 @@ public class Run {
 		System.out.println("Peso: "+fiat.getPeso()+"Kg");
 		System.out.println("Numero posti:" + fiat.getNumPosti());
 		System.out.println("**************** TEST DRIVE FIAT **************");
-		c.viaggia();
+		mercedes.viaggia();
 		System.out.println("----------------------------------------------------");
 
 		
@@ -44,6 +44,7 @@ public class Run {
 		System.out.println("\n\n---------------> SPECIFICHE TECNICHE MUSTANG ECOBOOST");
 		System.out.println("Brand:" + ecoBoost.getBrand());
 		System.out.println("Modello:" + ecoBoost.getModel());
+		System.out.println("Motore:" + ecoBoost.versione());
 		System.out.println("Cilindrata: "+ecoBoost.getCilindrata()+"cc");
 		System.out.println("Peso: "+ecoBoost.getPeso()+"Kg");
 		System.out.println("Numero posti:" + ecoBoost.getNumPosti());
@@ -84,7 +85,7 @@ public class Run {
 
 		
 		List<Automobile> auto= new ArrayList<Automobile>();
-		auto.add(c);
+		auto.add(mercedes);
 		auto.add(fiat);
 		auto.add(cherook);
 		auto.add(ecoBoost);

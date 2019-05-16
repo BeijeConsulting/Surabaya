@@ -1,6 +1,4 @@
-package it.beije.surabaya.cap5.motorizzazione;
-
-import motorizzazione.primo.livello.Ciclomotore;
+package motorizzazione.primo.livello;
 
 public abstract class MotoGP extends Ciclomotore {
 

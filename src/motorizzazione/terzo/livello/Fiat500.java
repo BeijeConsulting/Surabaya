@@ -1,11 +1,11 @@
-package it.beije.surabaya.cap5.motorizzazione;
+package motorizzazione.terzo.livello;
 
 import motorizzazione.primo.livello.Automobile;
 import motorizzazione.secondo.livello.*;
 
 public class Fiat500 extends Automobile implements Utilitaria{
 
-	private static final int nPosti = 2;
+	private final int nPosti = 2;
 	
 	public Fiat500() {
 		super.cilindrata = 875;
