@@ -22,6 +22,13 @@ Sportiva
 Suv
 Furgone
 
+(alimentazione)
+benzina
+gpl
+diesel
+elettrico
+metano
+
 
 Fiat_500
 VW_Golf

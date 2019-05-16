@@ -16,12 +16,12 @@ public class Fiat_500 extends Veicolo implements Utilitaria  {
 //	public int getNumRuote() {
 //		return 5;
 //	}
-//	@Override
-//	public void viaggia() {
-//
-//		System.out.println("Viaggio in fiaaat");
-//		
-//	}
+	@Override
+	public void viaggia() {
+
+		System.out.println("Viaggio in fiaaat");
+		
+	}
 
 	
 
