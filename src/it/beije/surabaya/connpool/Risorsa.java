@@ -46,8 +46,9 @@ public class Risorsa {
 			setOccupata(true);
 			this.nomeCliente = nomeCliente;
 			risorseDisponibili--;
+			System.out.println("Risorsa prenotata.");
 		}else {
-			System.out.println("Risorsa occupata!\n");
+			System.out.println("Risorsa già occupata!\n");
 		}
 	}
 	

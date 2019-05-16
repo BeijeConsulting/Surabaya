@@ -33,20 +33,40 @@ public class CarPool {
 		//cars.stampaRisorse();
 		System.out.println("Ci sono risorse disponibili?");
 		boolean disponibile = Risorsa.verificaRisorsa();
-		if(disponibile)
+		
+		if(disponibile) {
 			System.out.println("Ci sono "+ Risorsa.getNumRisorse()+ " risorse disponibili!");
+		}
+		else {
+			System.out.println("Non ci sono risorse disponibili");
+			}
+		
 		
 		System.out.println("Richiesta risorsa ->");
 		cars.getRisorsa(0).occupaRisorsa("Pippo");
-		
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(1).occupaRisorsa("Fra");
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(2).occupaRisorsa("Mario");
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(3).occupaRisorsa("Luca");
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(4).occupaRisorsa("Marco");
+
+		System.out.println("\n");
 		cars.stampaRisorse();
 		
 		System.out.println("Richiesta risorsa ->");
 		cars.getRisorsa(0).occupaRisorsa("Ciao");
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(1).occupaRisorsa("Ciao");
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(2).occupaRisorsa("Ciao");
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(3).occupaRisorsa("Ciao");
+		System.out.println("Richiesta risorsa ->");
+		cars.getRisorsa(4).occupaRisorsa("Ciao");
 		
-		cars.stampaRisorse();
-
-	
 	}
 
 	
