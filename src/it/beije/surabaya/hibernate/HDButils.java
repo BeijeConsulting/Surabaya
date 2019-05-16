@@ -30,7 +30,7 @@ public class HDButils {
 	public static Session getSession() throws Exception {
 		
 		SessionFactory factory = new Configuration().configure()
-				.addAnnotatedClass(Utente.class)
+				.addAnnotatedClass(User.class)
 				.buildSessionFactory();
 		
 		System.out.println("is open?" + factory.isOpen());
