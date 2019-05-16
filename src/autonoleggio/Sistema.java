@@ -7,7 +7,7 @@ import it.beije.surabaya.cap5.motorizzazione.*;
 
 public class Sistema {
 
-
+	//Dichiarazione ed inizializzazione della multi map statica 
 	private static Map<String, ArrayList<Automobile>> automobili = new HashMap<>();
 	static {
 		ArrayList<Automobile> fiat = new ArrayList<>();
@@ -22,6 +22,7 @@ public class Sistema {
 		automobili.put("Alfa Quadrifoglio", alfa);
 	}
 	
+	//Metodo per richiedere una automobile usando il nome di questa
 	public static Automobile getAuto(String nome) throws IndexOutOfBoundsException{
 		
 		if(automobili.containsKey(nome)) {
@@ -40,6 +41,7 @@ public class Sistema {
 	
 	}
 	
+	//metodo per ritornare una automobile 
 	public static void returnFiat(Automobile auto) {
 		ArrayList<Automobile> a = automobili.get("Fiat 500");
 		a.add(auto);
@@ -52,6 +54,7 @@ public class Sistema {
 
 		System.out.println(automobili);
 		Automobile a1 = null, a2 = null, a3 = null, a4 = null;
+		
 		try {
 			a1 = getAuto("Fiat 500");
 			a1.viaggia();
@@ -94,27 +97,6 @@ public class Sistema {
 		}
 		
 		System.out.println(automobili);
-
-//		Automobile a4 = getFiat();
-//		try {
-//			a4.viaggia();
-//		}catch(NullPointerException e){
-//			System.out.println("Stai a piedi");
-//		}
-//		
-//		System.out.println(automobili);
-//		returnFiat(a3);
-//		System.out.println(automobili);
-//		
-//		returnFiat(a1);
-//		System.out.println(automobili);
-//
-//		a4 = getFiat();
-//		try {
-//			a4.viaggia();
-//		}catch(NullPointerException e){
-//			System.out.println("Stai a piedi");
-//		}
 		
 		
 	}
