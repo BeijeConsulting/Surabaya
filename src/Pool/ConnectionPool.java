@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ConnectionPool {
 	
-	public Connector newConnection(Connector c, String u, Time t ){
+	static public Connector newConnection(Connector c, String u, Time t ){
 		
 		c.user = u;
 		c.time = t;
@@ -12,15 +12,22 @@ public class ConnectionPool {
 		return c;
 	};
 	
-	public void closeConnection() {};
+	static public void closeConnection(Connector c, String u) {
+		
+		c.user = null;
+		c.time = null;
+		
+	};
 	
+	
+	//da sostituire con util date e da implementare i metodi per il calcolo con le date 
 	public Time getPassedTime(Time t, Time now) {
 		
 		Time time = now - t;
 		
 		return  t;};
 		
-	public void timeOut(ArrayList<Connector> str, Time now)	{};
+	static public void timeOut(Connector c, Time now)	{};
 	
 	public static void main(String[] args) {
 		
@@ -35,14 +42,23 @@ public class ConnectionPool {
 		if(userRequest == "add") {
 			Connection con = new Connection();
 			Connector c = new Connector(con);
-			str.add(c.newConnection(c, user, now));
+			str.add(ConnectionPool.newConnection(c, user, now));
+		}else if (userRequest == "remove") {
+			for(int i = 0; i < str.size(); i++) {
+				if(((Connector)str.get(i)).user == user) {
+					ConnectionPool.closeConnection(str.get(i), user);
+				};
+			}		
+		}else {
+			for(int i = 0; i < str.size(); i++) {
+				ConnectionPool.timeOut(str.get(i), now);
+			}
+			
 		}
-		
-		
-	} 
+	}
 
 }
-
+//da sostituire con le connessioni vere e proprie
 class Connection{}
 
 class Time{}
