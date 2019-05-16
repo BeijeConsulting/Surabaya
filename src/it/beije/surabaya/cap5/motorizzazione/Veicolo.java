@@ -2,57 +2,49 @@ package it.beije.surabaya.cap5.motorizzazione;
 
 public abstract class Veicolo {
 	
-	public abstract int getNumRuote();
-	public abstract double getCilindrata();
-	public abstract int getNumPosti();
+	public int numRuote;
+	public double cilindrata;
+	public int numPosti;
+	public double peso;
 	public abstract double getPeso();
-	public abstract void viaggia();	
+	
 
 }
 
-abstract class Ciclomotore extends Veicolo {
+interface Automobile{
 	
-	public abstract void impenna();
 	
-	public int getNumRuote() {
-		return 2;
-		
+	final int numRuote = 4;
+	 default int getNumRuote(){
+		return numRuote;
 	};
-	
-}
-
-abstract class Automobile extends Veicolo {
-	
-	public int getNumRuote() {
-		return 4;
 		
+}
+
+interface Ciclomotore{
+	
+	public int getNumRuote();
+	public double getCilindrata();
+	public default void impenna() {
+		System.out.println("Tentato decollo");
 	};
-	
-	public abstract void trazione();
-	
-	public abstract int getNumPorte();
-	
-	
+	final int numRuote = 2;
 	
 }
 
+interface Alimentazione {
+	
+	void getAlimentazione();
+}
 
+interface Berlina extends Automobile{}
 
-abstract class Utilitaria extends Automobile {}
+interface Sportiva extends Automobile{}
 
-abstract class Berlina extends Automobile {}
-
-abstract class Sportiva extends Automobile {}
-
-abstract class Suv extends Automobile {}
-
-abstract class Furgone extends Automobile {}
-
-
-
+interface Suv extends Automobile{}
 
 /*
-Veicolo [ getNumRuote, getCilindrata, getNumPosti, getPeso, viaggia ]
+Veicolo [ getNumRuote, getCilindrata, getNumPosti, getPeso, viaggia, getMarca, getModello, getMarcaModello ]
 
 Ciclomotore [ impenna ]
 Automobile [ ]
@@ -61,7 +53,6 @@ Utilitaria
 Berlina
 Sportiva
 Suv
-Furgone
 
 
 Fiat_500

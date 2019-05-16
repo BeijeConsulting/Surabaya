@@ -1,96 +1,60 @@
 package it.beije.surabaya.cap5.motorizzazione;
 
-public class Utilitarie extends Utilitaria{
+public class Utilitarie {
 	
-	private double cilindrata = 1.4;
-	private double peso = 1200;
-	private int porte = 5;
-	private int posti = 5;
+interface Utilitaria extends Automobile{
 	
-	public void viaggia() {
-		System.out.println("Brum Brum");
+	final int numPosti = 4;
+	default public int getNumPosti(){
+		return numPosti;
 	};
-	
-	public double getPeso() {
-		
-		double peso = this.peso;
-		return peso;
-		
-	}
-	
-	public double getCilindrata() {
-		
-		double cilindrata = this.cilindrata;
-		return cilindrata;
-				
-	};
-	
-	public int getNumPorte() {
-		
-		int porte = this.porte;
-		return porte;
-		
-	};
-	
-	public int getNumPosti() {
-		
-		int posti = this.posti;
-		return posti;
-		
-	};
-	
-	public void trazione() {
-		System.out.println("La trazione è anteriore");
-	};
-	
 }
 
-class Fiat_500 extends Utilitarie {
+	static class Fiat_500 extends Veicolo implements Utilitaria,Alimentazione {
+		
 	
-	private int posti = 4;
-	private double peso = 980;
-	private double cilindrata = 1.2;
-	
-	public int getNumPosti() {
+		 double cilindrata = 1200;
+		 double peso = 980;
+		 String marca = "Fiat";
+		 String Modello = "500";
+		 String[] alimentazione = {"Benzina", "Diesel"};
+
 		
-		int posti = this.posti;
-		return posti;
+		public double getCilindrata(){
+			return this.cilindrata;
+		};
 		
-	};
-	
-	public double getPeso() {
+		public double getPeso(){
+			return this.peso;
+		};
 		
-		double peso = this.peso;
-		return peso;
-		
-	}
-	
-	public double getCilindrata() {
-		
-		double cilindrata = this.cilindrata;
-		return cilindrata;
-				
-	};
-	
-	public static void main(String[] args){
-		
-		Fiat_500 prova = new Fiat_500();
-		Utilitarie prova2 = new Utilitarie();
-		System.out.println(prova.getNumPosti() + prova.getNumRuote() + prova.getCilindrata() + prova2.getNumPosti() + prova2.getNumRuote() + prova2.getCilindrata());
-		
-		
-		
-	}
-}
-	class Toyota_Yaris extends Utilitarie{
-		
-		private int porte = 3;
-		
-		public int getNumPorte() {
-			
-			int porte = this.porte;
-			return porte;
-			
+		public void getAlimentazione(){
+			for(String s : this.alimentazione)
+				System.out.println(s);
 		};
 		
 	}
+
+	
+	static class Smart extends Veicolo implements Utilitaria,Alimentazione {
+		
+
+		double peso = 880;
+		int numPosti = 2;
+		double cilindrata = 1200;
+		String alimentazione = "Benzina";
+
+		public double getPeso(){
+			return this.peso;
+		};
+		
+		public double getCilindrata(){
+			return this.cilindrata;
+		};	
+		
+		public void getAlimentazione(){
+			String s = this.alimentazione;
+				System.out.println(s);
+		};
+	}
+}
