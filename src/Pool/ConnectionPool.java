@@ -35,14 +35,24 @@ public class ConnectionPool {
 		String userRequest = new String();
 		String user = new String();
 		Time now = new Time();
+		int numberOfConnections = 5;
+		
+		for(int i = 0; i < numberOfConnections; i++) {
+			Connection con = new Connection();
+			Connector c = new Connector(con);
+			str.add(c);
+		};
+		
 		
 		
 		//manca: lettura richiesta utente, lettura nome user
 		
 		if(userRequest == "add") {
-			Connection con = new Connection();
-			Connector c = new Connector(con);
-			str.add(ConnectionPool.newConnection(c, user, now));
+			int i = 0;
+			while(((Connector)str.get(i)).user != null){
+				++i;
+			};
+			str.add(ConnectionPool.newConnection(str.get(i), user, now));
 		}else if (userRequest == "remove") {
 			for(int i = 0; i < str.size(); i++) {
 				if(((Connector)str.get(i)).user == user) {
