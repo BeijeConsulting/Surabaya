@@ -1,10 +1,11 @@
 package it.beije.surabaya.pool;
 
 import java.time.LocalDateTime;
+import java.time.Period;
 
 public class ConnectionPool {
 	
-	private final static int numConnections = 10;
+	private final static int numConnections = 3;
 	private static MyConnection[] connections = null;
 
 	private static void init() {
@@ -42,8 +43,37 @@ public class ConnectionPool {
 		
 	}
 	
+	public static void closeConnections(Period time) {
+		
+	}
 	
 	
+	public static void main(String [] args) {
+		
+		MyConnection c1 = getConnection();
+		System.out.println(c1.isAvailable());
+		
+		for(MyConnection c : connections) {
+			System.out.println(c);
+		}
+		
+		closeConnection(c1);
+		
+		for(MyConnection c : connections) {
+			System.out.println(c);
+		}
+		
+		System.out.println(c1.isAvailable());
+		
+		System.out.println(connections);
+		
+		MyConnection c2 = getConnection();
+		System.out.println(c1.isAvailable());
+		System.out.println(c2.isAvailable());
+		
+		System.out.println(connections);
+
+	}
 	
 
 }

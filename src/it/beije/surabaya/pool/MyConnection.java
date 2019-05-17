@@ -35,5 +35,11 @@ public class MyConnection{
 		this.timestamp = timestamp;
 	}
 	
+	public void close() {
+		this.conn = "chiusa";
+		this.available = true;
+		this.timestamp = null;
+	}
+	
 	
 }
