@@ -23,7 +23,7 @@ public class ConnectionPool {
 		
 		for (int i=0; i < numConnections; i++) {
 			if (connections[i] == null) {
-				connections[i] = new MyConnection();
+				connections[i] = new MyConnection(i);
 				
 				return connections[i];
 			} else if (connections[i].isAvailable()) {
@@ -56,9 +56,21 @@ public class ConnectionPool {
 	
 	
 	public static void main(String[] args) {
+		System.out.println("chiedo una connessione (1)...");
 		MyConnection connection = ConnectionPool.getConnection();
+		System.out.println(connection.getConn());
+		
+		System.out.println("chiedo una connessione (2)...");
+		MyConnection connection2 = ConnectionPool.getConnection();
+		System.out.println(connection2.getConn());
+		
+		connection.close();
+
+		System.out.println("chiedo una connessione (3)...");
+		MyConnection connection3 = ConnectionPool.getConnection();
+		System.out.println(connection3.getConn());
+		
 		//...
 		//ConnectionPool.closeConnection(connection);
-		connection.close();
 	}
 }
