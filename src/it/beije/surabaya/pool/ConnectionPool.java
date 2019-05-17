@@ -9,10 +9,10 @@ public class ConnectionPool {
 	public String fornisciRisorsa() {	
 		for (int i=0; i<risorse.size(); i++ ) {
 			String r = risorse.get(i);
-			if (r == null) {
-				r = "occupato";		
+			if (r == null) {									//se nella posizione iesima il valore è null (nel senso che è libera)
+				r = "occupato";									//setta la varibile r come occupata
 																// aggiungere quando è stata settata a occupata (ora)
-				return r;
+				return r;										//restituisci la risorsa in quella posizione che non sarà più libera
 			
 			} 
 		}
