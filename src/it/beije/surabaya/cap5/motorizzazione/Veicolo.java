@@ -75,8 +75,11 @@ Sportiva
 Suv
 Furgone
 
+<<<<<<< HEAD
 
 interfaccie alimentazione:
+=======
+>>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
 Benzina
@@ -90,9 +93,14 @@ VW_Golf
 Renault_Captur
 Toyota_Yaris
 <<<<<<< HEAD
+<<<<<<< HEAD
 smart
 =======
 Smart
 
 
+=======
+Smart
+
+>>>>>>> refs/remotes/origin/master
 */
