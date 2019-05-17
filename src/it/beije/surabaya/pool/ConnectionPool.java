@@ -1,22 +1,77 @@
 package it.beije.surabaya.pool;
 
+import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 
-public class ConnectionPool {
 
-	private ArrayList<String> risorse = new ArrayList<>(10);		//non sarà string ma bin per contenere la risorsa e il momento in cui la occupiamo
-																//inizializzazione array con il contenuto
-	public String fornisciRisorsa() {	
-		for (int i=0; i<risorse.size(); i++ ) {
-			String r = risorse.get(i);
-			if (r == null) {									//se nella posizione iesima il valore è null (nel senso che è libera)
-				r = "occupato";									//setta la varibile r come occupata
-																// aggiungere quando è stata settata a occupata (ora)
-				return r;										//restituisci la risorsa in quella posizione che non sarà più libera
-			
-			} 
-		}
-		return null;
+public class ConnectionPool {
+	
+	private static final int numConnections = 10;
+	private static MyConnection[] connections = null;
+	
+	private static void init() {
+		connections = new MyConnection[numConnections];
+//		for (MyConnection c : connections) {
+//			c = new MyConnection();
+//		}
 	}
 	
+	public static MyConnection getConnection() {
+		if (connections == null) {
+			init();
+		}
+		
+		for (int i=0; i < numConnections; i++) {
+			if (connections[i] == null) {
+				connections[i] = new MyConnection(i);
+				
+				return connections[i];
+			} else if (connections[i].isAvailable()) {
+				connections[i].setAvailable(false);
+				connections[i].setTimestamp(LocalDateTime.now());
+				
+				return connections[i];
+			}
+		}
+		
+		return null;//tenere in attesa il richiedente ?
+	}
+	
+//	public static void closeConnection(MyConnection c) {
+//		c.setAvailable(true);
+//		c.setTimestamp(null);
+//	}
+	
+	public static void closeConnections(Period expiredTime) {
+		for (MyConnection c : connections) {
+			if (!c.isAvailable()) {
+				if (c.getTimestamp() == null ||
+					c.getTimestamp().plus(expiredTime).isBefore(LocalDateTime.now())
+					) {
+					c.close();
+				}
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		System.out.println("chiedo una connessione (1)...");
+		MyConnection connection = ConnectionPool.getConnection();
+		System.out.println(connection.getConn());
+		
+		System.out.println("chiedo una connessione (2)...");
+		MyConnection connection2 = ConnectionPool.getConnection();
+		System.out.println(connection2.getConn());
+		
+		connection.close();
+
+		System.out.println("chiedo una connessione (3)...");
+		MyConnection connection3 = ConnectionPool.getConnection();
+		System.out.println(connection3.getConn());
+		
+		//...
+		//ConnectionPool.closeConnection(connection);
+	}
 }
