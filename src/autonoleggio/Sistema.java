@@ -53,7 +53,7 @@ public class Sistema {
 	public static void main(String[] args) {
 
 		System.out.println(automobili);
-		Automobile a1 = null, a2 = null, a3 = null, a4 = null;
+		Automobile a1 = null, a2 = null, a3 = null, a4 = null, a5 = null;
 		
 		try {
 			a1 = getAuto("Fiat 500");
@@ -98,7 +98,14 @@ public class Sistema {
 		
 		System.out.println(automobili);
 		
+		new Sistema();		
 		
+		try {
+			a5 = getAuto("Alfa Quadrifoglio");
+			a5.viaggia();
+		}catch(IndexOutOfBoundsException e){
+			System.out.println("Alfa esaurite");
+		}
 	}
 
 	
