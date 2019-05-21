@@ -4,14 +4,20 @@ import java.time.LocalDateTime;
 
 public class MyConnection{
 	
+	private int id;
 	private String conn;
 	private boolean available;
 	private LocalDateTime timestamp;
 	
-	public MyConnection() {
+	public MyConnection(int id) {
+		this.id = id;
 		this.conn = "sono una conn";
 		this.available = false;
 		this.timestamp = LocalDateTime.now();
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getConn() {
