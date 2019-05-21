@@ -76,8 +76,11 @@ Suv
 Furgone
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 interfaccie alimentazione:
+=======
+>>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
 =======
@@ -94,11 +97,16 @@ Renault_Captur
 Toyota_Yaris
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 smart
 =======
 Smart
 
 
+=======
+Smart
+
+>>>>>>> refs/remotes/origin/master
 =======
 Smart
 
